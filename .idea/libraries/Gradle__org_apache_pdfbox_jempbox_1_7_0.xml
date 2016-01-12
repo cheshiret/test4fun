@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.pdfbox:jempbox:1.7.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.pdfbox/jempbox/1.7.0/d2f3d15fa0182e16e7f04fd37d2003dbd22d3e37/jempbox-1.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.pdfbox/jempbox/1.7.0/ba8432b36e7004d113ad306a4fd393fb13e475d8/jempbox-1.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

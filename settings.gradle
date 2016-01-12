@@ -1,0 +1,6 @@
+rootProject.name = 'test4fun'
+include 'testapi', 'testdriver','testproject'
+//findProject(':testproject')?.name = 'test4fun'
+include 'generator'
+include 'testrunner'
+

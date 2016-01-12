@@ -1,0 +1,114 @@
+group 'com.active.qa.automation.web'
+version '1.0'
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+allprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    compileJava.options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+    mavenCentral()
+/*    ivy {
+        url 'http://awotordevbld01.dev.activenetwork.com:8081'
+        layout 'pattern' , {
+            artifact '/artifactory/libs-releases-local/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]'
+            artifact '/artifactory/ext-releases-local/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]'
+            ivy '/artifactory/libs-releases-local/[organisation]/[module]/[revision]/ivy-[revision].xml'
+            ivy '/artifactory/ext-releases-local/[organisation]/[module]/[revision]/ivy-[revision].xml'
+        }
+    }*/
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile project(':testapi')
+    compile project(':testdriver')
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile group:'com.oracle' , name:'ojdbc14' , version:'10.2.0.4.0'
+//    compile group:'com.hynnet' , name:'oracle-driver-ojdbc6' , version:'12.1.0.1'
+    compile group:'mysql' , name:'mysql-connector-java' , version:'5.1.21'
+
+    //<!--Message Queue-->
+    compile group:'javax.jms' , name:'jms-api' , version:'1.1-rev-1'
+    compile group:'com.sun.messaging.mq' , name:'imq' , version:'4.4.2'
+    compile group:'org.apache.activemq' , name:'activemq-all' , version:'5.7.0'
+
+    //<!--email-->
+    compile group:'javax.mail' , name:'mail' , version:'1.4.5'
+
+    //<!--PDF/Excel/XML parsing-->
+    compile group:'org.apache.pdfbox' , name:'pdfbox' , version:'1.7.0'
+    compile group:'org.apache.pdfbox' , name:'fontbox' , version:'1.7.0'
+    compile group:'org.apache.pdfbox' , name:'jempbox' , version:'1.7.0'
+    compile group:'com.itextpdf' , name:'itextpdf' , version:'5.3.0'
+    compile group:'org.apache.poi' , name:'poi' , version:'3.8'
+    compile group:'dom4j' , name:'dom4j' , version:'1.6.1'
+    compile group:'xml-apis' , name:'xml-apis' , version:'1.3.04'
+    compile group:'xalan' , name:'xalan' , version:'2.7.1'
+    compile group:'xalan' , name:'serializer' , version:'2.7.1'
+    compile group:'xerces' , name:'xercesImpl' , version:'2.9.1'
+
+    //<!--SSH/FTP/Telnet-->
+    compile group:'com.jcraft' , name:'jsch' , version:'0.1.48'
+    compile group:'commons-net' , name:'commons-net' , version:'1.4.0'
+
+    //<!--Httpclient-->
+    compile group:'org.apache.httpcomponents' , name:'httpclient'  , version:'4.2.1'
+    compile group:'org.apache.httpcomponents' , name:'httpcore'  , version:'4.2.1'
+    compile group:'org.apache.httpcomponents' , name:'httpmime'  , version:'4.2.1'
+
+    //<!--Unit test and Utilities-->
+    compile group:'junit' , name:'junit' , version:'4.8.1'
+    compile group:'org.testng' , name:'testng' , version:'6.0.1'
+    compile group:'com.google.guava' , name:'guava' , version:'11.0.2'
+    compile group:'commons-io' , name:'commons-io' , version:'2.2'
+    compile group:'net.java.dev.jna' , name:'jna' , version:'3.4.0'
+    compile group:'net.java.dev.jna' , name:'platform' , version:'3.4.0'
+
+    //<!--logging-->
+    compile group:'log4j' , name:'log4j' , version:'1.2.14'
+
+    //<!--Unicode library-->
+    compile group:'com.ibm.icu' , name:'icu4j' , version:'49.1'
+
+    //<!--TPTP datapool dependencies-->
+    compile group:'org.eclipse.core' , name:'org.eclipse.core.runtime' , version:'3.6.0.v20100505'
+    compile group:'org.eclipse.emf' , name:'org.eclipse.emf.common' , version:'2.6.0.v20100614-1136'
+    compile group:'org.eclipse.emf' , name:'org.eclipse.emf.ecore' , version:'2.6.0.v20100614-1136'
+    compile group:'org.eclipse.emf' , name:'org.eclipse.emf.ecore.xmi' , version:'2.5.0.v20100521-1846'
+    compile group:'org.eclipse.equinox' , name:'org.eclipse.equinox.common' , version:'3.6.0.v20100503'
+
+    //<!--OPENCSV, updated by tchen-->
+    compile group:'net.sf.opencsv' , name:'opencsv' , version:'2.3'
+    //<!--ReportNG added by tchen-->
+    compile group:'org.uncommons' , name:'reportng' , version:'1.1.4'
+    //<!--Jsoup added by tchen-->
+    compile group:'org.jsoup' , name:'jsoup' , version:'1.7.3'
+    //<!--Crawljax added by tchen-->
+    compile group:'com.crawljax' , name:'crawljax-core' , version:'3.5.1'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+//task hello {
+//    doLast {println 'Hello World!'
+//    }
+
+/*sourceSets.main.java.srcDirs = ['java']
+mainClassName = "com.activenetwork.qa.awo.testcases.TestcaseLoader"
+
+task (TestcaseLoader, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.activenetwork.qa.awo.testcases.TestcaseLoader'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+defaultTasks 'TestcaseLoader'*/
+
+

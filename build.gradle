@@ -1,0 +1,50 @@
+group 'com.active.qa.automation.web'
+version '1.0'
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: "java"
+
+
+allprojects {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    compileJava.options.encoding = 'UTF-8'
+
+}
+
+
+
+subprojects {
+
+    apply plugin: "java"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+    }
+
+    configurations.all {
+        transitive = false
+    }
+}
+//task hello {
+//    doLast {println 'Hello World!'
+//    }
+
+/*sourceSets.main.java.srcDirs = ['java']
+mainClassName = "com.activenetwork.qa.awo.testcases.TestcaseLoader"
+
+task (TestcaseLoader, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.activenetwork.qa.awo.testcases.TestcaseLoader'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+defaultTasks 'TestcaseLoader'*/
+
+
