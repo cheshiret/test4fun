@@ -39,6 +39,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile group:'oracle' , name:'OracleJDBC' , version:'11.2.0.3.0'
     compile group:'com.oracle' , name:'ojdbc14' , version:'10.2.0.4.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '2.48.2'
 
     //compile group:'com.hynnet' , name:'oracle-driver-ojdbc6' , version:'12.1.0.1'
     compile group:'mysql' , name:'mysql-connector-java' , version:'5.1.21'

@@ -67,14 +67,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Gradle: selenium-firefox-driver-2.48.2">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../testapi/libs/selenium-firefox-driver-2.48.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>

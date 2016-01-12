@@ -31,7 +31,6 @@
       <GradleProjectSettings>
         <option name="distributionType" value="WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/testdriver" />
-        <option name="gradleHome" value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.5-bin/7mk8vyobxfh3eazpg3pi2y9mv/gradle-2.5/bin" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -42,7 +41,6 @@
             <option value="$PROJECT_DIR$/testrunner" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
