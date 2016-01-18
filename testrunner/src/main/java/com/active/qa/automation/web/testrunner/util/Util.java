@@ -36,17 +36,20 @@ public class Util {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    private static Logger logger=Logger.getLogger(Util.class);
-    private static final String CASHED_BUILD=getProjectPath()+File.separator+"awo_build.properties";
+    private static Logger logger = Logger.
+            getLogger(Util.class);
+    private static final String CASHED_BUILD = getProjectPath() + File.separator + "awo_build.properties";
 
     public static int checkTestStatus(String env, String caseName) throws SQLException, ClassNotFoundException {
-        String query="select "+env+"_status from test_cases where casename = '"+caseName+"'";
+        String query="select " + env + "_status from test_cases where casename = '" + caseName + "'";
         int status;
         DataBase db=DataBase.getInstance();
         List<String> resultList = db.executeQuery(query, env+"_status");
         status = Integer.parseInt(resultList.get(0));
         return status;
     }
+
+
 
     /**
      * Update the test case result in database with the given result
@@ -59,13 +62,13 @@ public class Util {
      * @throws ClassNotFoundException
      */
     public static boolean updateResult(String env,String runningId,String caseName,int result) throws SQLException, ClassNotFoundException {
-        String query="update test_cases set "+env+"_result="+result+" where "+env+"_running_id='"+runningId+"' and casename='"+caseName+"'";
+        String query = "update test_cases set " + env + "_result=" + result + " where " + env + "_running_id='" + runningId + "' and casename='" + caseName + "'";
         DataBase db=DataBase.getInstance();
         int count=db.executeUpdate(query);
         if(count<1) {
-            logger.warn("Failed to execute query: "+query);
+            logger.warn("Failed to execute query: " + query);
         }
-        return count>0;
+        return count > 0;
     }
 
     /**
@@ -139,7 +142,7 @@ public class Util {
 
     /**
      * Get all external jar files for the given script path
-     * @param scriptPath
+     * @param libpath
      * @return - array of jar file names
      */
     public static String[] getExternalJars(String libpath){

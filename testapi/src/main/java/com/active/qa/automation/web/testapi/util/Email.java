@@ -95,12 +95,12 @@ public class Email {
      * @param bcc - bcc email addresses, multi-addresses should be separated by ";"
      * @param subject - email subject
      * @param text - email body text
-     * @param attachments
+     * @param attachments it's
      */
     public static void send(String host, String from, String to, String cc, String bcc, String subject, String text, String[] attachments) {
         try {
             //set recipients
-            if(StringUtil.isEmpty(to)) {
+            if (StringUtil.isEmpty(to)) {
                 throw new ItemNotFoundException("Email to address is empty!");
             }
 
