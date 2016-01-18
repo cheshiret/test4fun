@@ -9,7 +9,8 @@ import java.util.regex.Pattern;
 
 
 /**
- * Created by tchen on 1/6/2016.
+ * @author : tchen
+ * @since : 1/6/2016
  */
 public enum BrowserInfo {
   // Ordering is important in detecting browser.
@@ -81,31 +82,32 @@ public enum BrowserInfo {
     int version = getMajorVersion(agent);
 
     if (current() == MSIE && (version == 7 || version == 8)) {
-      if (agent.indexOf("Trident/5.0") > -1)
+      if (agent.indexOf("Trident/5.0") > -1) {
         version = 9;
-      else if (agent.indexOf("Trident/4.0") > -1)
+      }
+      else if (agent.indexOf("Trident/4.0") > -1) {
         version = 8;
+      }
     }
 
-    // System.out.println( "\n==============================\n     " + current() + " " + version + " " + getMajorVersion( SessionManager.get().getUserAgent() ) + "\n" + agent + "\n==============================\n "  );
     return version;
 
   }
 
   /**
-   * @param key
+   * @param userAgent
    * @return
    */
   static BrowserInfo getBroswer(String userAgent) {
     for (BrowserInfo browser : values())
-      if (browser != UNKNOWN && userAgent.contains(browser.id))
+      if (browser != UNKNOWN && userAgent.contains(browser.id)) {
         return browser;
-
+      }
     return UNKNOWN;
   }
 
   /**
-   * @param key
+   * @param userAgent
    * @return
    */
   static int getMajorVersion(String userAgent) {
@@ -123,9 +125,6 @@ public enum BrowserInfo {
         } catch (NumberFormatException e) {
           majorVersion = -1;
         }
-//        if ( b == MSIE && ( majorVersion == 7 || majorVersion == 8 ) ) {
-//
-//        }
       }
     }
     return majorVersion;
@@ -133,8 +132,9 @@ public enum BrowserInfo {
 
   public static String getPlatform(String userAgent) {
     for (Map.Entry<String, String> entry : platforms.entrySet()) {
-      if (userAgent.matches(".*(" + entry.getValue() + ").*"))
+      if (userAgent.matches(".*(" + entry.getValue() + ").*")) {
         return entry.getKey();
+      }
     }
     return "Unknown";
   }
