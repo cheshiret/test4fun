@@ -1,10 +1,10 @@
 package com.active.qa.automation.web.testapi.pages;
 
-import com.active.qa.automation.web.testapi.exception.ActionFailedException;
-import com.active.qa.automation.web.testapi.exception.PageNotFoundException;
 import com.active.qa.automation.web.testapi.TestApiConstants;
 import com.active.qa.automation.web.testapi.datacollection.Data;
 import com.active.qa.automation.web.testapi.datacollection.DataAttribute;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.PageNotFoundException;
 import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
 import com.active.qa.automation.web.testapi.interfaces.page.Loadable;
 import com.active.qa.automation.web.testapi.util.AutomationLogger;
@@ -19,64 +19,64 @@ import java.util.Set;
 /**
  * Created by tchen on 1/11/2016.
  */
-public abstract class Page implements Loadable,Checkable,TestApiConstants {
-    protected int timeout;
-    protected AutomationLogger logger;
+public abstract class Page implements Loadable, Checkable, TestApiConstants {
+  protected int timeout;
+  protected AutomationLogger logger;
 
-    protected Page() {
-        logger=AutomationLogger.getInstance();
-        timeout = TestApiConstants.VERY_LONG_SLEEP;
+  protected Page() {
+    logger = AutomationLogger.getInstance();
+    timeout = TestApiConstants.VERY_LONG_SLEEP;
+  }
+
+  public String getName() {
+    String name = this.getClass().getName();
+
+    int index = name.lastIndexOf(".");
+    name = name.substring(index + 1);
+
+    return name;
+  }
+
+  @Override
+  public void waitLoading() {
+    Browser.getInstance().waitExists(timeout, this);
+  }
+
+
+  @Override
+  public void check(Data<?>... data) {
+    if (this != PageTrack.getLastPageVisited()) {
+      throw new PageNotFoundException("Current page '" + PageTrack.getLastPageVisited().getName() + "' is not expected " + this.getName());
     }
 
-    public String getName() {
-        String name=this.getClass().getName();
+    for (Data<?> d : data) {
 
-        int index=name.lastIndexOf(".");
-        name=name.substring(index+1);
-
-        return name;
-    }
-
-    @Override
-    public void waitLoading() {
-        Browser.getInstance().waitExists(timeout,this);
-    }
-
-
-    @Override
-    public void check(Data<?>... data) {
-        if(this!= PageTrack.getLastPageVisited()) {
-            throw new PageNotFoundException("Current page '"+PageTrack.getLastPageVisited().getName()+"' is not expected "+this.getName());
-        }
-
-        for(Data<?> d:data) {
-
-            Data<?> dtc=d.toBeCollected()?d:d.getEmptyData();
+      Data<?> dtc = d.toBeCollected() ? d : d.getEmptyData();
 
 //			String dataName=d.getDataName();
-            try {
+      try {
 //				Method method=this.getClass().getMethod("collect"+dataName,d.getClass());
 //				method.invoke(this, dtc);
-                collect(dtc);
+        collect(dtc);
 
-            } catch (Exception e) {
-                throw new ActionFailedException(e);
-            }
+      } catch (Exception e) {
+        throw new ActionFailedException(e);
+      }
 
-            if(!d.toBeCollected()) {
-                Verification.verifyData(dtc, d);
-            }
-        }
+      if (!d.toBeCollected()) {
+        Verification.verifyData(dtc, d);
+      }
     }
+  }
 
-    protected void collect(Data<?> data) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        Set<?> keys=data.getKeys();
+  protected void collect(Data<?> data) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    Set<?> keys = data.getKeys();
 
-        for(Object key:keys) {
-            Method m = getClass().getMethod("get"+key.toString(), (Class<?>[])null);
-            Object value=m.invoke(this, (Object[])null);
-            data.save((DataAttribute)key, value);
-        }
+    for (Object key : keys) {
+      Method m = getClass().getMethod("get" + key.toString(), (Class<?>[]) null);
+      Object value = m.invoke(this, (Object[]) null);
+      data.save((DataAttribute) key, value);
     }
+  }
 
 }

@@ -6,26 +6,27 @@ import java.util.Set;
 /**
  * Created by tchen on 1/11/2016.
  */
-public class StringData<E extends Enum<E> & DataAttribute> extends Data<E>{
-    private static final long serialVersionUID = 1L;
+public class StringData<E extends Enum<E> & DataAttribute> extends Data<E> {
+  private static final long serialVersionUID = 1L;
 
     /**
      * construct a Data object with the given keys and all null values
+     *
      * @param keys
      */
-    @SafeVarargs
-    public StringData(E... keys) {
-        data=new HashMap<E, Object>();
-        for(E key:keys) {
-            put(key,null);
+  @SafeVarargs
+  public StringData(E... keys) {
+    data = new HashMap<E, Object>();
+    for (E key : keys) {
+            put(key, null);
             setToBeCollected(true);
         }
     }
 
     public StringData(Set<E> keys) {
-        data=new HashMap<E, Object>();
-        for(E key:keys) {
-            put(key,null);
+        data = new HashMap<E, Object>();
+        for (E key : keys) {
+            put(key, null);
             setToBeCollected(true);
         }
     }

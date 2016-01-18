@@ -7,43 +7,39 @@ package com.active.qa.automation.web.testapi.exception;
 @SuppressWarnings("serial")
 public class ObjectNotFoundException extends AutoRuntimeException {
 
-    /**
-     * Constructs a ObjectNotFoundException with no detail message.
-     */
-    public ObjectNotFoundException() {
-        super();
-    }
+  /**
+   * Constructs a ObjectNotFoundException with no detail message.
+   */
+  public ObjectNotFoundException() {
+    super();
+  }
 
-    /**
-     * Constructs a ObjectNotFoundException with the specified detail message.
-     *
-     * @param message
-     *            the detail message
-     */
-    public ObjectNotFoundException(String message) {
-        super(message);
-    }
+  /**
+   * Constructs a ObjectNotFoundException with the specified detail message.
+   *
+   * @param message the detail message
+   */
+  public ObjectNotFoundException(String message) {
+    super(message);
+  }
 
-    /**
-     * Constructs a ObjectNotFoundException with the specified detail message and cause.
-     *
-     * @param message
-     *            the detail message
-     * @param cause
-     *            the cause
-     */
-    public ObjectNotFoundException(String message, Throwable cause) {
-        super(message, cause);
-    }
+  /**
+   * Constructs a ObjectNotFoundException with the specified detail message and cause.
+   *
+   * @param message the detail message
+   * @param cause   the cause
+   */
+  public ObjectNotFoundException(String message, Throwable cause) {
+    super(message, cause);
+  }
 
-    /**
-     * Constructs a ObjectNotFoundException with the specified cause.
-     *
-     * @param cause
-     *            the cause
-     */
-    public ObjectNotFoundException(Throwable cause) {
-        super(cause);
-    }
+  /**
+   * Constructs a ObjectNotFoundException with the specified cause.
+   *
+   * @param cause the cause
+   */
+  public ObjectNotFoundException(Throwable cause) {
+    super(cause);
+  }
 }
 

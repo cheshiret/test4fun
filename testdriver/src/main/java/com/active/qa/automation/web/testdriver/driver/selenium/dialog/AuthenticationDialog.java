@@ -7,22 +7,23 @@ import com.active.qa.automation.web.testapi.interfaces.dialog.IAuthenticationDia
  */
 public class AuthenticationDialog extends ConfirmDialog implements IAuthenticationDialog {
 
-    public AuthenticationDialog(String attributes) {
-        super(attributes);
-    }
+  public AuthenticationDialog(String attributes) {
+    super(attributes);
+  }
 
-    public AuthenticationDialog() {
-        this("[TITLE:Internet Explore; CLASS:#32770]");
-    }
+  public AuthenticationDialog() {
+    this("[TITLE:Internet Explore; CLASS:#32770]");
+  }
 
 
-    @Override
-    public void setUserName(String name) {
-        this.setTextField(10508, name);
-    }
-    @Override
-    public void setPassword(String password) {
-        this.setTextField(10513, password);
-    }
+  @Override
+  public void setUserName(String name) {
+    this.setTextField(10508, name);
+  }
+
+  @Override
+  public void setPassword(String password) {
+    this.setTextField(10513, password);
+  }
 
 }

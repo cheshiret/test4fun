@@ -9,9 +9,9 @@ import org.jsoup.nodes.Element;
  */
 class DropdownOption extends HtmlObject implements IOption {
 
-    public DropdownOption(Element element, String handler) {
-        super(element,handler);
-    }
+  public DropdownOption(Element element, String handler) {
+    super(element, handler);
+  }
 
 }
 

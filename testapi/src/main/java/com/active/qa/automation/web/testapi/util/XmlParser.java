@@ -1,13 +1,5 @@
 package com.active.qa.automation.web.testapi.util;
 
-import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.TransformerException;
-
 import com.active.qa.automation.web.testapi.exception.ActionFailedException;
 import org.apache.xpath.XPathAPI;
 import org.w3c.dom.Document;
@@ -15,130 +7,137 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.TransformerException;
+import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by tchen on 1/11/2016.
  */
 public class XmlParser {
-    // Global value so it can be ref'd by the tree-adapter
-    Document document;
+  // Global value so it can be ref'd by the tree-adapter
+  Document document;
 
-    // Get the root element (without specifying its name)
+  // Get the root element (without specifying its name)
 
-    public static void main(String argv[]) {
+  public static void main(String argv[]) {
+
+  }
+
+  public XmlParser(String xml) {
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    try {
+      DocumentBuilder builder = factory.newDocumentBuilder();
+      document = builder.parse(new InputSource(new ByteArrayInputStream(xml.getBytes("utf-8"))));
+
+    } catch (Exception e) {
+      throw new ActionFailedException(e);
 
     }
 
-    public XmlParser(String xml) {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            document = builder.parse(new InputSource(new ByteArrayInputStream(xml.getBytes("utf-8"))));
+  }
 
-        } catch (Exception e) {
-            throw new ActionFailedException(e);
+  public NodeList getNodesByAttribute(List<Property[]> list) {
+    String xpath = constructXPath(list);
+
+    return getNodesByXpath(xpath);
+  }
+
+  public Node getNodeByAttribute(List<Property[]> list) {
+    String xpath = constructXPath(list);
+
+    return getNodeByXpath(xpath);
+  }
+
+  public NodeList getNodesByAttribute(Property... prop) {
+    String xpath = constructXPath(prop);
+
+    return getNodesByXpath(xpath);
+  }
+
+  public Node getNodeByAttribute(Property... prop) {
+    String xpath = constructXPath(prop);
+
+    return getNodeByXpath(xpath);
+  }
+
+  public String constructXPath(List<Property[]> list) {
+    StringBuffer xpath = new StringBuffer();
+    for (Property[] p : list) {
+      xpath.append(constructXPath(p));
+    }
+
+    return xpath.toString();
+  }
+
+  public String constructXPath(Property... props) {
+    String tag = "*";
+    List<String> attrs = new ArrayList<String>();
+    for (Property p : props) {
+      if (p.getPropertyName().equalsIgnoreCase("tag")) {
+        tag = (String) p.getPropertyValue();
+      } else {
+        attrs.add("@" + p.getPropertyName() + "='" + p.getPropertyValue() + "'");
+      }
+    }
+
+    StringBuffer xpath = new StringBuffer();
+    xpath.append("//");
+    xpath.append(tag);
+    if (attrs.size() > 0) {
+      xpath.append("[");
+      for (int i = 0; i < attrs.size(); i++) {
+        if (i == 0) {
+          xpath.append(attrs.get(i));
+        } else {
+          xpath.append(" and ");
+          xpath.append(attrs.get(i));
 
         }
+      }
+      xpath.append("]");
 
     }
 
-    public NodeList getNodesByAttribute(List<Property[]> list) {
-        String xpath=constructXPath(list);
+    return xpath.toString();
+  }
 
-        return getNodesByXpath(xpath);
+  public NodeList getNodesByXpath(String xpath) {
+    try {
+      return XPathAPI.selectNodeList(document, xpath);
+    } catch (TransformerException e) {
+      throw new ActionFailedException(e);
     }
+  }
 
-    public Node getNodeByAttribute(List<Property[]> list) {
-        String xpath=constructXPath(list);
+  public Node getNodeByXpath(String xpath) {
+    NodeList list = getNodesByXpath(xpath);
+    if (list != null && list.getLength() > 0)
+      return list.item(0);
+    else
+      return null;
+  }
 
-        return getNodeByXpath(xpath);
-    }
+  public String getNodeAttribute(Node node, String attr) {
+    return node.getAttributes().getNamedItem(attr).getTextContent();
+  }
 
-    public NodeList getNodesByAttribute(Property... prop) {
-        String xpath=constructXPath(prop);
+  public String getNodeContent(Node node) {
+    return node.getFirstChild().getTextContent();
+  }
 
-        return getNodesByXpath(xpath);
-    }
-
-    public Node getNodeByAttribute(Property... prop) {
-        String xpath=constructXPath(prop);
-
-        return getNodeByXpath(xpath);
-    }
-
-    public String constructXPath(List<Property[]> list) {
-        StringBuffer xpath=new StringBuffer();
-        for(Property[] p:list) {
-            xpath.append(constructXPath(p));
-        }
-
-        return xpath.toString();
-    }
-
-    public String constructXPath(Property...props) {
-        String tag="*";
-        List<String> attrs=new ArrayList<String>();
-        for(Property p: props) {
-            if(p.getPropertyName().equalsIgnoreCase("tag")) {
-                tag=(String)p.getPropertyValue();
-            } else {
-                attrs.add("@"+p.getPropertyName()+"='"+p.getPropertyValue()+"'");
-            }
-        }
-
-        StringBuffer xpath=new StringBuffer();
-        xpath.append("//");
-        xpath.append(tag);
-        if(attrs.size()>0) {
-            xpath.append("[");
-            for(int i=0;i<attrs.size();i++) {
-                if(i==0) {
-                    xpath.append(attrs.get(i));
-                } else {
-                    xpath.append(" and ");
-                    xpath.append(attrs.get(i));
-
-                }
-            }
-            xpath.append("]");
-
-        }
-
-        return xpath.toString();
-    }
-
-    public NodeList getNodesByXpath(String xpath) {
-        try {
-            return XPathAPI.selectNodeList(document, xpath);
-        } catch (TransformerException e) {
-            throw new ActionFailedException(e);
-        }
-    }
-
-    public Node getNodeByXpath(String xpath) {
-        NodeList list=getNodesByXpath(xpath);
-        if(list!=null && list.getLength()>0)
-            return list.item(0);
-        else
-            return null;
-    }
-
-    public String getNodeAttribute(Node node, String attr){
-        return node.getAttributes().getNamedItem(attr).getTextContent();
-    }
-
-    public String getNodeContent(Node node){
-        return node.getFirstChild().getTextContent();
-    }
-
-    public String getNodeContentByAttribute(Property... prop){
-        Node node = this.getNodeByAttribute(prop);
-        if(node == null) {
+  public String getNodeContentByAttribute(Property... prop) {
+    Node node = this.getNodeByAttribute(prop);
+    if (node == null) {
 //			throw new ActionFailedException("Could not get any node by attribute.");
-            System.out.println("Could not get any node by attribute "+prop.toString());
-            return null;
-        }
-        return this.getNodeContent(node);
+      System.out.println("Could not get any node by attribute " + prop.toString());
+      return null;
     }
+    return this.getNodeContent(node);
+  }
 
 //	/**
 //	 * Get Node value search by nodeName in the given XML file

@@ -6,50 +6,51 @@ package com.active.qa.automation.web.testapi.exception;
  */
 public class ErrorOnDataException extends AutoRuntimeException {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
 
-    /**
-     *
-     */
-    public ErrorOnDataException() {
-        super();
-    }
+  /**
+   *
+   */
+  public ErrorOnDataException() {
+    super();
+  }
 
-    /**
-     * When Doing verification, we expect use this constructor to generate message
-     * with expected result and actual result;
-     * @param message
-     * @param expectedResult
-     * @param actualResult
-     */
-    public ErrorOnDataException(String message,Object expectedResult,Object actualResult) {
-        super(message+"\n Expected Result:"+expectedResult+"\n Actual   Result:"+actualResult);
-    }
+  /**
+   * When Doing verification, we expect use this constructor to generate message
+   * with expected result and actual result;
+   *
+   * @param message
+   * @param expectedResult
+   * @param actualResult
+   */
+  public ErrorOnDataException(String message, Object expectedResult, Object actualResult) {
+    super(message + "\n Expected Result:" + expectedResult + "\n Actual   Result:" + actualResult);
+  }
 
-    /**
-     * @param message
-     */
-    public ErrorOnDataException(String message) {
-        super(message);
-    }
+  /**
+   * @param message
+   */
+  public ErrorOnDataException(String message) {
+    super(message);
+  }
 
-    /**
-     * @param cause
-     */
-    public ErrorOnDataException(Throwable cause) {
-        super(cause);
-    }
+  /**
+   * @param cause
+   */
+  public ErrorOnDataException(Throwable cause) {
+    super(cause);
+  }
 
-    /**
-     * @param message
-     * @param cause
-     */
-    public ErrorOnDataException(String message, Throwable cause) {
-        super(message, cause);
-    }
+  /**
+   * @param message
+   * @param cause
+   */
+  public ErrorOnDataException(String message, Throwable cause) {
+    super(message, cause);
+  }
 
 }
 

@@ -12,19 +12,19 @@ import com.active.qa.automation.web.testapi.interfaces.page.Loadable;
  * Created by tchen on 1/11/2016.
  */
 public abstract class Ajax implements Loadable {
-    protected IBrowser browser= Browser.getInstance();
-    protected static Ajax _instance=null;
+  protected IBrowser browser = Browser.getInstance();
+  protected static Ajax _instance = null;
 
-    @Override
-    public void waitLoading() {
-        browser.waitDisappear(TestApiConstants.VERY_LONG_SLEEP, this);
-    }
+  @Override
+  public void waitLoading() {
+    browser.waitDisappear(TestApiConstants.VERY_LONG_SLEEP, this);
+  }
 
-    @Override
-    public String getName() {
-        String name=this.getClass().getSimpleName();
+  @Override
+  public String getName() {
+    String name = this.getClass().getSimpleName();
 
-        return name;
-    }
+    return name;
+  }
 
 }

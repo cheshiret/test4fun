@@ -9,17 +9,17 @@ import org.jsoup.nodes.Element;
  */
 class LinkObject extends HtmlObject implements ILink {
 
-    public LinkObject(Element element, String... handler) {
-        super(element,handler);
-    }
+  public LinkObject(Element element, String... handler) {
+    super(element, handler);
+  }
 
-    @Override
-    public String href() {
-        try {
-            return element.attr("href");
-        } catch (Exception e) {
-            throw new ActionFailedException(e);
-        }
+  @Override
+  public String href() {
+    try {
+      return element.attr("href");
+    } catch (Exception e) {
+      throw new ActionFailedException(e);
     }
+  }
 
 }

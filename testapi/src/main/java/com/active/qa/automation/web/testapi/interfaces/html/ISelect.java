@@ -9,21 +9,21 @@ import java.util.List;
  * Created by tchen on 1/11/2016.
  */
 public interface ISelect extends IHtmlObject {
-    public String getSelectedText();
+  public String getSelectedText();
 
-    public List<String> getSelectedTexts();
+  public List<String> getSelectedTexts();
 
-    public void select(int index);
+  public void select(int index);
 
-    public void select(String item);
+  public void select(String item);
 
-    public void select(RegularExpression itemPattern);
+  public void select(RegularExpression itemPattern);
 
-    public List<String> getAllOptions();
+  public List<String> getAllOptions();
 
-    public boolean isMultiple();
+  public boolean isMultiple();
 
-    public void select(String[] items);
+  public void select(String[] items);
 
 //	List<String> getAjaxSelectedTexts();
 //

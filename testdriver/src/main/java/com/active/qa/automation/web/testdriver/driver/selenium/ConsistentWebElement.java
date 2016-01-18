@@ -17,99 +17,99 @@ import java.util.List;
  * Created by tchen on 1/6/2016.
  */
 public class ConsistentWebElement implements WebElement, WrapsElement, Locatable {
-    WebElement element;
+  WebElement element;
 
-    public ConsistentWebElement( WebElement delegate ) {
-        if ( delegate instanceof ConsistentWebElement )
-            System.err.println( "          !!!!!!!!!!@@@@@@@@@@@ Double Wrap @@@@@@@@@@@@!!!!!!!!!!!" );
-        element = delegate;
-    }
+  public ConsistentWebElement(WebElement delegate) {
+    if (delegate instanceof ConsistentWebElement)
+      System.err.println("          !!!!!!!!!!@@@@@@@@@@@ Double Wrap @@@@@@@@@@@@!!!!!!!!!!!");
+    element = delegate;
+  }
 
-    public void click() {
-        element.click();
-    }
+  public void click() {
+    element.click();
+  }
 
-    public void submit() {
-        element.submit();
-    }
+  public void submit() {
+    element.submit();
+  }
 
-    public void sendKeys( CharSequence... paramArrayOfCharSequence ) {
-        element.sendKeys( paramArrayOfCharSequence );
-    }
+  public void sendKeys(CharSequence... paramArrayOfCharSequence) {
+    element.sendKeys(paramArrayOfCharSequence);
+  }
 
-    public void clear() {
-        element.clear();
-    }
+  public void clear() {
+    element.clear();
+  }
 
-    public String getTagName() {
-        return StringUtil.unNull( element.getTagName() );
-    }
+  public String getTagName() {
+    return StringUtil.unNull(element.getTagName());
+  }
 
-    public String getAttribute( String paramString ) {
-        return StringUtil.unNull( element.getAttribute( paramString ) );
-    }
+  public String getAttribute(String paramString) {
+    return StringUtil.unNull(element.getAttribute(paramString));
+  }
 
-    public boolean isSelected() {
-        return element.isSelected();
-    }
+  public boolean isSelected() {
+    return element.isSelected();
+  }
 
-    public boolean isEnabled() {
-        return element.isEnabled();
-    }
+  public boolean isEnabled() {
+    return element.isEnabled();
+  }
 
-    public String getText() {
-        return StringUtil.unNull( element.getText() );
-    }
+  public String getText() {
+    return StringUtil.unNull(element.getText());
+  }
 
-    public List<WebElement> findElements(By paramBy ) {
-        List<WebElement> elements = new ArrayList<>();
-        List<WebElement> es=element.findElements( paramBy );
-        for ( WebElement w :  es)
-            elements.add( new ConsistentWebElement( w ) );
+  public List<WebElement> findElements(By paramBy) {
+    List<WebElement> elements = new ArrayList<>();
+    List<WebElement> es = element.findElements(paramBy);
+    for (WebElement w : es)
+      elements.add(new ConsistentWebElement(w));
 
-        return elements;
-    }
+    return elements;
+  }
 
-    public WebElement findElement( By paramBy ) {
-        return new ConsistentWebElement( element.findElement( paramBy ) );
-    }
+  public WebElement findElement(By paramBy) {
+    return new ConsistentWebElement(element.findElement(paramBy));
+  }
 
-    public boolean isDisplayed() {
-        return element.isDisplayed();
-    }
+  public boolean isDisplayed() {
+    return element.isDisplayed();
+  }
 
-    public Point getLocation() {
-        return element.getLocation();
-    }
+  public Point getLocation() {
+    return element.getLocation();
+  }
 
-    public Dimension getSize() {
-        return element.getSize();
-    }
+  public Dimension getSize() {
+    return element.getSize();
+  }
 
-    public String getCssValue( String paramString ) {
-        return StringUtil.unNull( element.getCssValue( paramString ) );
-    }
+  public String getCssValue(String paramString) {
+    return StringUtil.unNull(element.getCssValue(paramString));
+  }
 
-    @Override
-    public WebElement getWrappedElement() {
-        return element;
-    }
+  @Override
+  public WebElement getWrappedElement() {
+    return element;
+  }
 
 
-    public Point getLocationOnScreenOnceScrolledIntoView() {
+  public Point getLocationOnScreenOnceScrolledIntoView() {
 //    if ( element instanceof Locatable )
 //      return ( (Locatable)element ).getLocationOnScreenOnceScrolledIntoView();
 
-        return null;
-    }
+    return null;
+  }
 
-    @Override
-    public Coordinates getCoordinates() {
-        if ( element instanceof Locatable )
-            return ( (Locatable)element ).getCoordinates();
+  @Override
+  public Coordinates getCoordinates() {
+    if (element instanceof Locatable)
+      return ((Locatable) element).getCoordinates();
 
-        return null;
-    }
+    return null;
+  }
 
 }
 

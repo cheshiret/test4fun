@@ -5,22 +5,22 @@ package com.active.qa.automation.web.testapi.interfaces;
  * Created by tchen on 1/11/2016.
  */
 public interface IGuiObject {
-    public void click();
+  public void click();
 
-    public void doubleClick();
+  public void doubleClick();
 
-    public boolean exists();
+  public boolean exists();
 
-    public String getProperty(String name);
+  public String getProperty(String name);
 
-    public boolean isEnabled();
+  public boolean isEnabled();
 
-    public boolean isVisible();
+  public boolean isVisible();
 
-    public void unregister();
+  public void unregister();
 
-    public void hover();
+  public void hover();
 
-    public void rightClick();
+  public void rightClick();
 }
 

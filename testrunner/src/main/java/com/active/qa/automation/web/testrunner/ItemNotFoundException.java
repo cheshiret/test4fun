@@ -5,14 +5,14 @@ package com.active.qa.automation.web.testrunner;
  */
 public class ItemNotFoundException extends RuntimeException {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
 
-    public ItemNotFoundException(String msg) {
-        super(msg);
-    }
+  public ItemNotFoundException(String msg) {
+    super(msg);
+  }
 
 }
 

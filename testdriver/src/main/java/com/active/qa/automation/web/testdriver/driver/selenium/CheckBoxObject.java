@@ -8,28 +8,28 @@ import org.jsoup.nodes.Element;
  */
 class CheckBoxObject extends HtmlObject implements ICheckBox {
 
-    public CheckBoxObject(Element element, String... handler) {
-        super(element,handler);
-    }
+  public CheckBoxObject(Element element, String... handler) {
+    super(element, handler);
+  }
 
-    @Override
-    public void deselect() {
-        if(getWebElement().isSelected()){
-            click();
-        }
+  @Override
+  public void deselect() {
+    if (getWebElement().isSelected()) {
+      click();
     }
+  }
 
-    @Override
-    public boolean isSelected() {
-        return getWebElement().isSelected();
-    }
+  @Override
+  public boolean isSelected() {
+    return getWebElement().isSelected();
+  }
 
-    @Override
-    public void select() {
-        if(!getWebElement().isSelected()){
-            click();
-        }
+  @Override
+  public void select() {
+    if (!getWebElement().isSelected()) {
+      click();
     }
+  }
 
 }
 

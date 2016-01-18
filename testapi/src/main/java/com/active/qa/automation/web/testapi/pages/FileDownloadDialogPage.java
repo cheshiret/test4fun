@@ -8,81 +8,81 @@ import com.active.qa.automation.web.testapi.interfaces.dialog.IFileDownloadDialo
  * Created by tchen on 1/11/2016.
  */
 public class FileDownloadDialogPage extends DialogPage implements
-        IFileDownloadDialog {
-    private static FileDownloadDialogPage _instance = null;
-    private boolean dismissable;
-    int time = TestApiConstants.FILE_DIALOG_LONG_SLEEP;
+    IFileDownloadDialog {
+  private static FileDownloadDialogPage _instance = null;
+  private boolean dismissable;
+  int time = TestApiConstants.FILE_DIALOG_LONG_SLEEP;
 
-    public static FileDownloadDialogPage getInstance() {
-        if (null == _instance) {
-            _instance = new FileDownloadDialogPage();
-        }
-
-        return _instance;
+  public static FileDownloadDialogPage getInstance() {
+    if (null == _instance) {
+      _instance = new FileDownloadDialogPage();
     }
 
-    protected FileDownloadDialogPage() {
-        super();
-        dismissable = true;
-    }
+    return _instance;
+  }
 
-    @Override
-    public boolean exists() {
-        dialog = Browser.getInstance().getFiledownloadDialog();
-        boolean exists=dialog!=null;
-        return exists;
-    }
+  protected FileDownloadDialogPage() {
+    super();
+    dismissable = true;
+  }
 
-    @Override
-    public void clickCancel() {
-        ((IFileDownloadDialog) dialog).clickCancel();
-    }
+  @Override
+  public boolean exists() {
+    dialog = Browser.getInstance().getFiledownloadDialog();
+    boolean exists = dialog != null;
+    return exists;
+  }
 
-    @Override
-    public void clickOpen() {
-        ((IFileDownloadDialog) dialog).clickOpen();
-    }
+  @Override
+  public void clickCancel() {
+    ((IFileDownloadDialog) dialog).clickCancel();
+  }
 
-    @Override
-    public void clickClose() {
-        ((IFileDownloadDialog) dialog).clickClose();
-    }
+  @Override
+  public void clickOpen() {
+    ((IFileDownloadDialog) dialog).clickOpen();
+  }
 
-    @Override
-    public void closeThisDialogBoxWhenDownloadCompletes(boolean close) {
-        ((IFileDownloadDialog) dialog)
-                .closeThisDialogBoxWhenDownloadCompletes(close);
-    }
+  @Override
+  public void clickClose() {
+    ((IFileDownloadDialog) dialog).clickClose();
+  }
 
-    @Override
-    public void save(String fullPathAndFileName) {
-        ((IFileDownloadDialog) dialog).save(fullPathAndFileName);
-    }
+  @Override
+  public void closeThisDialogBoxWhenDownloadCompletes(boolean close) {
+    ((IFileDownloadDialog) dialog)
+        .closeThisDialogBoxWhenDownloadCompletes(close);
+  }
 
-    @Override
-    public void waitUntilDownloadComplete() {
-        ((IFileDownloadDialog) dialog).waitUntilDownloadComplete();
-    }
+  @Override
+  public void save(String fullPathAndFileName) {
+    ((IFileDownloadDialog) dialog).save(fullPathAndFileName);
+  }
 
-    public void setDismissible(boolean choice) {
-        dismissable = choice;
-    }
+  @Override
+  public void waitUntilDownloadComplete() {
+    ((IFileDownloadDialog) dialog).waitUntilDownloadComplete();
+  }
 
-    @Override
-    public boolean dismissible() {
-        return dismissable;
-    }
+  public void setDismissible(boolean choice) {
+    dismissable = choice;
+  }
 
-    @Override
-    public void dismiss() {
-        this.clickCancel();
-    }
+  @Override
+  public boolean dismissible() {
+    return dismissable;
+  }
 
-    public void downloadSaveFile(String pathName) {
-        this.setDismissible(false);
-        this.setBeforePageLoading(false);
-        Browser.getInstance().waitExists(time,this);
-        this.save(pathName);
-    }
+  @Override
+  public void dismiss() {
+    this.clickCancel();
+  }
+
+  public void downloadSaveFile(String pathName) {
+    this.setDismissible(false);
+    this.setBeforePageLoading(false);
+    Browser.getInstance().waitExists(time, this);
+    this.save(pathName);
+  }
 
 }

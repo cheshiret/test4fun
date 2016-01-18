@@ -6,48 +6,48 @@ import com.active.qa.automation.web.testapi.pages.DialogPage;
 /**
  * Created by tchen on 1/11/2016.
  */
-public interface IBrowser  extends ISimpleBrowser {
-    public void open(String url);
+public interface IBrowser extends ISimpleBrowser {
+  public void open(String url);
 
-    public void open();
+  public void open();
 
-    public void load(String url);
+  public void load(String url);
 
-    public void maximize();
+  public void maximize();
 
-    public void minimize();
+  public void minimize();
 
-    public void back();
+  public void back();
 
-    public void forward();
+  public void forward();
 
-    public void refresh();
+  public void refresh();
 
-    public IBrowser getBrowser(String attributeName, Object value);
+  public IBrowser getBrowser(String attributeName, Object value);
 
-    public IBrowser switchBrowser();
+  public IBrowser switchBrowser();
 
-    public IBrowser getBrowser(String attributeName, Object value, int timeout);
+  public IBrowser getBrowser(String attributeName, Object value, int timeout);
 
-    //added by tchen
-    public String getcurrentHandler();
+  //added by tchen
+  public String getcurrentHandler();
 
-    public ISimpleBrowser getHTMLDialog();
+  public ISimpleBrowser getHTMLDialog();
 
-    public ISimpleBrowser getHTMLDialog(String attributeName, Object value);
+  public ISimpleBrowser getHTMLDialog(String attributeName, Object value);
 
-    public IAlertDialog getAlertDialog();
+  public IAlertDialog getAlertDialog();
 
-    public IConfirmDialog getConfirmDialog();
+  public IConfirmDialog getConfirmDialog();
 
-    public IFileUploadDialog getFileUploadDialog();
+  public IFileUploadDialog getFileUploadDialog();
 
-    public IFileDownloadDialog getFiledownloadDialog();
+  public IFileDownloadDialog getFiledownloadDialog();
 
-    public IPrintDialog getPrintDialog();
+  public IPrintDialog getPrintDialog();
 
-    public IAuthenticationDialog getAuthenticationDialog(Object title);
+  public IAuthenticationDialog getAuthenticationDialog(Object title);
 
-    public int dismissDialogs(int timeout, DialogPage dialog, int limits);
+  public int dismissDialogs(int timeout, DialogPage dialog, int limits);
 
 }

@@ -9,19 +9,19 @@ import org.jsoup.nodes.Element;
  */
 class FrameObject extends HtmlObject implements IFrame {
 
-    public FrameObject(Element element, String... handler) {
-        super(element,handler);
-    }
+  public FrameObject(Element element, String... handler) {
+    super(element, handler);
+  }
 
-    @Override
-    public boolean containsText(Object value) {
-        try {
-            String text=RuntimeUtil.parsePropertyValue(value);
+  @Override
+  public boolean containsText(Object value) {
+    try {
+      String text = RuntimeUtil.parsePropertyValue(value);
 
-            return element.text().contains(text);
-        } catch (Exception e) {
-            throw new ActionFailedException(e);
-        }
+      return element.text().contains(text);
+    } catch (Exception e) {
+      throw new ActionFailedException(e);
     }
+  }
 
 }
