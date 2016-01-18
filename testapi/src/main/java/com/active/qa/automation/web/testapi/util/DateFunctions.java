@@ -16,8 +16,8 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.active.qa.automation.web.testapi.ActionFailedException;
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 

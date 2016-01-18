@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.testapi.verification;
 
-import com.active.qa.automation.web.testapi.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
 
 import java.util.HashMap;
 import java.util.Map;

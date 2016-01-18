@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.testapi.datacollection;
 
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 import com.active.qa.automation.web.testapi.util.StringUtil;
 
 import java.io.Serializable;

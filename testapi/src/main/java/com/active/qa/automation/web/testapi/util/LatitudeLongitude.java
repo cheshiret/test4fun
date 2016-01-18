@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.testapi.util;
 
-import com.active.qa.automation.web.testapi.ErrorOnDataException;
+import com.active.qa.automation.web.testapi.exception.ErrorOnDataException;
 
 import java.util.ArrayList;
 import java.util.List;

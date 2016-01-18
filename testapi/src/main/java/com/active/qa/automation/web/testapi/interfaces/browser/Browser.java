@@ -1,6 +1,10 @@
 package com.active.qa.automation.web.testapi.interfaces.browser;
 
 import com.active.qa.automation.web.testapi.*;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ObjectNotFoundException;
+import com.active.qa.automation.web.testapi.exception.PageNotFoundException;
 import com.active.qa.automation.web.testapi.interfaces.html.ICheckBox;
 import com.active.qa.automation.web.testapi.interfaces.html.IHtmlObject;
 import com.active.qa.automation.web.testapi.interfaces.html.IRadioButton;
@@ -706,9 +710,10 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
 
     /**
      * Get the text value of the TextField matching the given property
-     * @param propertyKey
-     * @param value
-     * @param top - search the object from
+     * @param propertyKey1
+     * @param value1
+     * @param propertyKey2
+     * @param value2
      * @return
      */
     @Override
@@ -2157,8 +2162,8 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
 
     /**
      * Search all TestObjects matching the given property
-     * @param propertyKey1 - the property key
-     * @param value1 - the property value
+     * @param propertyKey - the property key
+     * @param value - the property value
      * @return
      */
     public IHtmlObject[] getHtmlObject(String propertyKey, Object value) {
@@ -2186,9 +2191,8 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
 
     /**
      * Search all TestObjects matching the given properties
-     * @param propertyKey1 - the property key
-     * @param value1 - the property value
-     * @param mapAble
+     * @param propertyKey - the property key
+     * @param value - the property value
      * @param top - the top level GuiTestObject starting the search from
      * @return
      */
@@ -2204,7 +2208,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
      * @param value1 - the 1st property value
      * @param propertyKey2 - the 2nd property key
      * @param value2 - the 2nd property value
-     * @param mapAble
      * @param top - the top level GuiTestObject starting the search from
      * @return
      */
@@ -2229,7 +2232,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
      * Search all Html.TABLE TestObjects matching the given properties
      * @param propertyKey
      * @param value
-     * @param mapAble
      * @return - array of TestObjects found
      */
     public IHtmlObject[] getTableTestObject(String propertyKey, Object value) {
@@ -2246,7 +2248,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
      * @param value1
      * @param propertyKey2
      * @param value2
-     * @param mapAble
      * @return - array of TestObjects found
      */
     public IHtmlObject[] getTableTestObject(String propertyKey1, Object value1,String propertyKey2, Object value2) {
@@ -2261,7 +2262,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
     /**
      * Search all Html.TABLE TestObjects matching the given properties
      * @param property
-     * @param mapAble
      * @return - array of TestObjects found
      */
     public IHtmlObject[] getTableTestObject(Property[] property) {
@@ -2286,7 +2286,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
      * @param value1
      * @param propertyKey2
      * @param value2
-     * @param mapAble
      * @return - array of TestObjects found
      */
     public IHtmlObject[] getDropdownList(String propertyKey1, Object value1, String propertyKey2, Object value2){
@@ -2300,7 +2299,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
     /**
      * Search all Html.SELECT TestObjects matching the given properties
      * @param property
-     * @param mapAble
      * @return - array of TestObjects found
      */
     @Override
@@ -2329,7 +2327,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
      * @param value1
      * @param propertyKey2
      * @param value2
-     * @param mapAble
      * @return - array of TestObjects found
      */
     public IHtmlObject[] getTextField(String propertyKey1, Object value1, String propertyKey2, Object value2){
@@ -2342,7 +2339,6 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
     /**
      * Search all Html.SELECT TestObjects matching the given properties
      * @param property
-     * @param mapAble
      * @return - array of TestObjects found
      */
     public IHtmlObject[] getTextField(Property[] property){
@@ -2548,7 +2544,7 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
     /**
      * This method finds all objects in HtmlDocument and checks if there is an object whose property value
      * is the same as the given value.
-     * @param propertyName
+     * @param propertyKey
      * @param value
      * @return
      */
@@ -2561,9 +2557,9 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
     /**
      * This method finds all objects in HtmlDocument and checks if there is an object whose property value
      * is the same as the given value.
-     * @param propertyName1
+     * @param propertyKey1
      * @param value1
-     * @param propertyName2
+     * @param propertyKey2
      * @param value2
      * @return
      */
@@ -2732,9 +2728,9 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
     /**
      * This method finds all visible objects in HtmlDocument and checks if there is an object whose property value
      * is the same as the given value.
-     * @param propertyName1
+     * @param propertyKey1
      * @param value1
-     * @param propertyName2
+     * @param propertyKey2
      * @param value2
      * @return
      */
@@ -3114,7 +3110,7 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
 
     /**
      * Wait for the existence of the given web page.
-     * @param seconds
+     * @param timeout
      * @param page - the web page
      * @return
      */
@@ -3139,7 +3135,7 @@ public abstract class Browser implements ISimpleBrowser,TestApiConstants {
 
     /**
      * Wait for the existence of the TestObjects with the given properties
-     * @param seconds
+     * @param timeout
      * @param properties
      * @return the page/object loaded
      */

@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.testapi.util;
 
-import com.active.qa.automation.web.testapi.NotSupportedException;
+import com.active.qa.automation.web.testapi.exception.NotSupportedException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

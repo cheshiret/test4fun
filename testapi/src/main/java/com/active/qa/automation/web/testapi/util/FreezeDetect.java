@@ -1,5 +1,7 @@
 package com.active.qa.automation.web.testapi.util;
 
+import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
+
 /**
  * This class is used to detect if any process is frozen/no-responding.
  * It will keep a record of noticed changes from target object. If there is not change notice within the timeout period, a freeze is detected.

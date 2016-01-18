@@ -1,7 +1,7 @@
 package com.active.qa.automation.web.testapi.pages;
 
-import com.active.qa.automation.web.testapi.ActionFailedException;
-import com.active.qa.automation.web.testapi.PageNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.PageNotFoundException;
 import com.active.qa.automation.web.testapi.TestApiConstants;
 import com.active.qa.automation.web.testapi.datacollection.Data;
 import com.active.qa.automation.web.testapi.datacollection.DataAttribute;

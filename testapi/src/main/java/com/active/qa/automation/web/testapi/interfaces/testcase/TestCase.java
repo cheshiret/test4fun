@@ -1,20 +1,18 @@
 package com.active.qa.automation.web.testapi.interfaces.testcase;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.active.qa.automation.web.testapi.TestApiConstants;
-import com.active.qa.automation.web.testapi.TestCaseFailedException;
+import com.active.qa.automation.web.testapi.exception.TestCaseFailedException;
+import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
+import com.active.qa.automation.web.testapi.interfaces.browser.IBrowser;
 import com.active.qa.automation.web.testapi.util.AutomationLogger;
 import com.active.qa.automation.web.testapi.util.SysInfo;
 import com.active.qa.automation.web.testapi.util.TestProperty;
 import com.active.qa.automation.web.testapi.util.Timer;
 import com.active.qa.automation.web.testapi.verification.CheckPoints;
-import org.eclipse.hyades.execution.runtime.datapool.IDatapool;
-import org.eclipse.hyades.execution.runtime.datapool.IDatapoolFactory;
-import org.eclipse.hyades.execution.runtime.datapool.IDatapoolIterator;
-import org.eclipse.hyades.models.common.datapool.impl.Common_DatapoolFactoryImpl;
+
 
 
 /**
@@ -74,20 +72,6 @@ public abstract class TestCase implements Executable,TestApiConstants {
      */
     protected boolean isCommandLine;
 
-    /**
-     * The data pool file name
-     */
-    protected String dpFileName; //datapool File name
-
-    /**
-     * The data pool object
-     */
-    protected IDatapool dp; //datapool object
-
-    /**
-     * The data pool iterator
-     */
-    protected IDatapoolIterator dpIter; //datapool iterator
 
     /**
      * the automation tool code
@@ -126,38 +110,13 @@ public abstract class TestCase implements Executable,TestApiConstants {
 
         isCommandLine = false;
 
-        dpFileName = null;
-        dp = null;
-        dpIter = null;
         debug=Boolean.parseBoolean(TestProperty.getProperty("debug"));
         verifyErrors.clear();
     }
 
 
 
-    protected void initializeDataPool(String dpFileName) {
-        File dpFile = new File(dpFileName);
-        IDatapoolFactory dpFactory = new Common_DatapoolFactoryImpl();
 
-        dp = dpFactory.load(dpFile, true);
-        dpIter = dpFactory.open(dp,"org.eclipse.hyades.datapool.iterator.DatapoolIteratorSequentialPrivate");
-        dpIter.dpInitialize(dp);
-
-    }
-
-    /**
-     * Initialize data pool if the dpFileName is set
-     *
-     */
-    protected void initializeDataPool() {
-        if (dpFileName == null || dpFileName.length() < 0)
-            return;
-
-        if (!dpFileName.endsWith(".datapool"))
-            dpFileName += ".datapool";
-
-        initializeDataPool(dpFileName);
-    }
 
 
     /**
@@ -216,8 +175,6 @@ public abstract class TestCase implements Executable,TestApiConstants {
             //wrap parameters
             wrapParameters(args);
 
-            //initialize Datapool
-            initializeDataPool();
 
             //set some default parameters which may depend on data set in wrapParameter() and loadIntermediateData()
             beforeExecution();

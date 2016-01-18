@@ -12,6 +12,18 @@ repositories {
 
 //generate test project for specific project, output a directory, simple file and readme file
 
+//task << copy test project with entered project name
+//task << in the file replace project with entered project name in the package
+
+/*task copyBin(type: Copy) {
+    from project(':component1').file('bin')
+    into file('bin')
+}*/
+
+//task new project
+//task create gradle
+//gradle init --type java-library
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

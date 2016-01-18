@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.testapi.util;
 
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 import com.active.qa.automation.web.testapi.interfaces.Ready;
 
 import java.util.Calendar;

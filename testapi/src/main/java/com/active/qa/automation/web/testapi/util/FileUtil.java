@@ -23,8 +23,10 @@ import java.util.List;
 import java.util.zip.ZipFile;
 import javax.swing.JOptionPane;
 
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
-import com.active.qa.automation.web.testapi.NotSupportedException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.NotSupportedException;
+import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
+import com.active.qa.automation.web.testapi.interfaces.browser.IBrowser;
 
 /**
  * wrap the convenient methods for manipulating Files, input/output etc.
@@ -683,7 +685,7 @@ public class FileUtil {
      * @param start
      */
     public static void slideShowScreenShots(List<String> files, int index) {
-        IBrowser browser=Browser.getInstance();
+        IBrowser browser= Browser.getInstance();
         browser.open();
 
         String[] fileTypes=new String[]{"png","log"};

@@ -1,6 +1,9 @@
 package com.active.qa.automation.web.testapi.pages;
 
 import com.active.qa.automation.web.testapi.TestApiConstants;
+import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
+import com.active.qa.automation.web.testapi.interfaces.browser.IBrowser;
+import com.active.qa.automation.web.testapi.interfaces.page.Loadable;
 
 /**
  * This class is used to generally handle Ajax synchronization, which become more and more
@@ -9,7 +12,7 @@ import com.active.qa.automation.web.testapi.TestApiConstants;
  * Created by tchen on 1/11/2016.
  */
 public abstract class Ajax implements Loadable {
-    protected IBrowser browser=Browser.getInstance();
+    protected IBrowser browser= Browser.getInstance();
     protected static Ajax _instance=null;
 
     @Override

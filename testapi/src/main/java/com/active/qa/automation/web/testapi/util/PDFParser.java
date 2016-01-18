@@ -23,8 +23,8 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 
-import com.active.qa.automation.web.testapi.ErrorOnDataException;
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ErrorOnDataException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.util.PDFTextStripper;
@@ -1118,5 +1118,4 @@ public class PDFParser {
         return colValue;
     }
 
-}
 }

@@ -1,7 +1,7 @@
 package com.active.qa.automation.web.testapi.util;
 
-import com.active.qa.automation.web.testapi.ActionFailedException;
-import com.active.qa.automation.web.testapi.NotSupportedException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.NotSupportedException;
 
 import java.io.File;
 import java.io.InputStream;

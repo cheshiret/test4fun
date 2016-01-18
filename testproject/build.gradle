@@ -95,7 +95,12 @@ dependencies {
     compile group:'org.jsoup' , name:'jsoup' , version:'1.7.3'
     //<!--Crawljax added by tchen-->
     compile group:'com.crawljax' , name:'crawljax-core' , version:'3.5.1'
+
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '2.45.0'
+    compile group: 'org.uncommons', name: 'reportng', version: '1.1.4'
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
+
 }
 //task hello {
 //    doLast {println 'Hello World!'
@@ -104,6 +109,31 @@ dependencies {
 /*sourceSets.main.java.srcDirs = ['java']
 mainClassName = "com.activenetwork.qa.awo.testcases.TestcaseLoader"
 
+
+//task testcrawler, focus to explore the website
+//crawler the page with default value or entered value
+//first execute step(rough test case, render necessary parameter)
+//then load page - if the page info not existed, generate page class, store page info
+//update the page class and prepare more test cases
+
+//?how to deal with pop up dialog and ajax page during crawling
+
+//In database
+//store the page with title ,url, and body html in database with hash value,
+//with it we can judge if the page is same.
+//You should first try to use Java's MessageDigest API with the standard (already installed)
+JCE provider (i.e. you call MessageDigest.getInstance("SHA-256")), and bench the result.
+Theoretically, the JCE may map the call to an implementation with "native"
+code (written in C or assembly), which will be faster than what you can get with Java.
+
+//compare google.hash and Object.hashCode and MessageDigest
+//http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/hash/HashFunction.html#noWeHaventYet
+
+The 160-bit space of SHA-1 is so large that I doubt you could ever have enough items to see a collision.
+
+//The 32-bit space of hashCode() should not have a significant number of collisions until you have over 50,000 items. However, this depends on using a good hash algorithm.
+
+//task testexecutor, execute the test case with test data.
 task (TestcaseLoader, dependsOn: 'classes', type: JavaExec) {
     main = 'com.activenetwork.qa.awo.testcases.TestcaseLoader'
     classpath = sourceSets.main.runtimeClasspath

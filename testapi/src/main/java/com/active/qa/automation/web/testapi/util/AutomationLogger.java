@@ -5,7 +5,7 @@ import java.util.Properties;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import com.active.qa.automation.web.testapi.NotInitializedException;
+import com.active.qa.automation.web.testapi.exception.NotInitializedException;
 
 /**
  * This class wraps Logger to maintain a general access point to logger
@@ -141,7 +141,7 @@ public class AutomationLogger {
     /**
      * Set Log File Name with the relative path to the logRootFolder by the given parameter
      *
-     * @param name - log file name plus the relative path
+     * @param logFileName - log file name plus the relative path
      */
     public void resetLogfileName(String logFileName) {
         this.logFileName=logFileName;
@@ -233,7 +233,7 @@ public class AutomationLogger {
     /**
      * Wrapped method to Record debug Information
      *
-     * @param fatal
+     * @param debug
      */
     public void debug(Object debug) {
         logger.debug(debug);

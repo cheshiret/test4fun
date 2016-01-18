@@ -1,7 +1,7 @@
 package com.active.qa.automation.web.testapi.interfaces.flex;
 
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
-import com.active.qa.automation.web.testapi.NotInitializedException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.NotInitializedException;
 import com.active.qa.automation.web.testapi.TestApiConstants;
 import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
 import com.active.qa.automation.web.testapi.util.Property;

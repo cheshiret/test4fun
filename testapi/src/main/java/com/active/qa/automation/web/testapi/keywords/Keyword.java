@@ -1,6 +1,12 @@
 package com.active.qa.automation.web.testapi.keywords;
 
 import com.active.qa.automation.web.testapi.TestApiConstants;
+import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
+import com.active.qa.automation.web.testapi.interfaces.browser.IBrowser;
+import com.active.qa.automation.web.testapi.util.AutomationLogger;
+import com.active.qa.automation.web.testapi.verification.CheckIdentifier;
+import com.active.qa.automation.web.testapi.verification.CheckPoint;
+import com.active.qa.automation.web.testapi.verification.CheckPoints;
 
 /**
  * Created by tchen on 1/11/2016.
@@ -11,7 +17,7 @@ public class Keyword implements TestApiConstants{
     protected CheckPoints checkPoints;
 
     protected Keyword() {
-        browser=Browser.getInstance();
+        browser= Browser.getInstance();
         checkPoints=CheckPoints.getInstance();
     }
 

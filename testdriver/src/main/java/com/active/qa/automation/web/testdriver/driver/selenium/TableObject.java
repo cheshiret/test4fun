@@ -3,7 +3,7 @@ package com.active.qa.automation.web.testdriver.driver.selenium;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.active.qa.automation.web.testapi.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
 import com.active.qa.automation.web.testapi.interfaces.html.IHtmlTable;
 import com.active.qa.automation.web.testapi.util.RegularExpression;
 import com.active.qa.automation.web.testapi.util.StringUtil;

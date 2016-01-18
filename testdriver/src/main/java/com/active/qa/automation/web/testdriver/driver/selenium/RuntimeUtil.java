@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
-import com.active.qa.automation.web.testapi.NotSupportedException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.NotSupportedException;
 import com.active.qa.automation.web.testapi.util.AutomationLogger;
 import com.active.qa.automation.web.testapi.util.KeyInput;
 import com.active.qa.automation.web.testapi.util.RegularExpression;

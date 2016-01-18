@@ -1,7 +1,7 @@
 package com.active.qa.automation.web.testdriver.driver.selenium;
 
 
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import java.awt.image.PixelGrabber;
 import java.io.File;
 import java.io.IOException;
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 
 /**
  * Wrap the methods for manipulating images

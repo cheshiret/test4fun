@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.testapi.verification;
 
-import com.active.qa.automation.web.testapi.ErrorOnDataException;
+import com.active.qa.automation.web.testapi.exception.ErrorOnDataException;
 import com.active.qa.automation.web.testapi.datacollection.Data;
 import com.active.qa.automation.web.testapi.datacollection.DataAttribute;
 import com.active.qa.automation.web.testapi.util.RegularExpression;

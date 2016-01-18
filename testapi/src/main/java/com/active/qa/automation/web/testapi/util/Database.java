@@ -5,8 +5,8 @@ package com.active.qa.automation.web.testapi.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
-import com.active.qa.automation.web.testapi.NotInitializedException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.NotInitializedException;
 
 /**
  * Wrap the general Database access functions

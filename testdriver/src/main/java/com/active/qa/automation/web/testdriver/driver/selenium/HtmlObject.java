@@ -3,8 +3,8 @@ package com.active.qa.automation.web.testdriver.driver.selenium;
 import java.util.List;
 import java.util.Properties;
 
-import com.active.qa.automation.web.testapi.ActionFailedException;
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 import com.active.qa.automation.web.testapi.interfaces.browser.Browser;
 import com.active.qa.automation.web.testapi.interfaces.html.IHtmlObject;
 import com.active.qa.automation.web.testapi.util.AutomationLogger;

@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.testdriver.driver.selenium.dialog;
 
-import com.active.qa.automation.web.testapi.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
 import com.active.qa.automation.web.testapi.interfaces.dialog.IConfirmDialog;
 import com.sun.jna.WString;
 

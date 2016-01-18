@@ -12,6 +12,23 @@ repositories {
 
 //Build Distribution Test
 
+//task build jar for rpc daemon and return the absolute address
+//set up the address to the test.properties
+
+
+
 dependencies {
+    compile group:'com.oracle' , name:'ojdbc14' , version:'10.2.0.4.0'
+    compile group:'net.java.dev.jna' , name:'jna' , version:'3.4.0'
+    compile group:'net.java.dev.jna' , name:'platform' , version:'3.4.0'
+    compile group:'mysql' , name:'mysql-connector-java' , version:'5.1.21'
+    compile group:'dom4j' , name:'dom4j' , version:'1.6.1'
+    compile group: 'com.sun.messaging.mq', name:'imq', version:'4.4.2'
+    compile group: 'org.apache.activemq', name:'activemq-all', version:'5.7.0'
+    compile group:'javax.jms' , name:'jms-api' , version:'1.1-rev-1'
+    compile group:'javax.mail' , name:'mail' , version:'1.4.5'
+    compile group:'log4j' , name:'log4j' , version:'1.2.14'
+    compile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'junit', name: 'junit', version: '4.11'
+
 }

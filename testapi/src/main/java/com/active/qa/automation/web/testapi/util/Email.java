@@ -34,7 +34,7 @@ import javax.mail.search.AndTerm;
 import javax.mail.search.ComparisonTerm;
 import javax.mail.search.SearchTerm;
 import org.apache.log4j.Logger;
-import com.active.qa.automation.web.testapi.ItemNotFoundException;
+import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 
 
 /**
@@ -528,7 +528,6 @@ public class Email {
      * @param sendDate - the email should be send after sendDate and within the dateTreshold
      * @param dateTreshold - the number of minutes
      * @param attachmentPath - the path to save the attachment files if there are any. if it is null, the attachment files will not be saved
-     * @param timeout - keep searching email within the timeout periods
      * @param delete - if true, the email will be deleted from mail box folder
      * @return - a Properties array contain all email match given search criteria which contain all information "from,date,subject,text,attach_count, attach_1, attach_2 ...."
      */

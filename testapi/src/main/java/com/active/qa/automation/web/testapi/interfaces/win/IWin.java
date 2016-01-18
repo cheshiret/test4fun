@@ -1,7 +1,7 @@
 package com.active.qa.automation.web.testapi.interfaces.win;
 
+import com.active.qa.automation.web.testapi.pages.Page;
 import com.active.qa.automation.web.testapi.util.Property;
-import org.apache.kahadb.page.Page;
 
 import java.util.List;
 

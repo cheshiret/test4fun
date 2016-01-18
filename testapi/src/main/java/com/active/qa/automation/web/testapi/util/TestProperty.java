@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.log4j.Logger;
-import com.active.qa.automation.web.testapi.ActionFailedException;
+import com.active.qa.automation.web.testapi.exception.ActionFailedException;
 
 /**
  * This class will load and maintain all properties needed for automated scripts execution.
