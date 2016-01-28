@@ -8,3 +8,5 @@
   
         $ shell
 3. After that, you can write more script
+
+        $ replace the reference in each file

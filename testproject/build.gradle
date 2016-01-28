@@ -51,6 +51,7 @@ dependencies {
     compile group:'org.apache.pdfbox' , name:'jempbox' , version:'1.7.0'
     compile group:'com.itextpdf' , name:'itextpdf' , version:'5.3.0'
     compile group:'org.apache.poi' , name:'poi' , version:'3.8'
+    compile group:'org.apache.poi' , name:'poi-ooxml' , version:'3.11'
     compile group:'dom4j' , name:'dom4j' , version:'1.6.1'
     compile group:'xml-apis' , name:'xml-apis' , version:'1.3.04'
     compile group:'xalan' , name:'xalan' , version:'2.7.1'
@@ -94,7 +95,7 @@ dependencies {
     //<!--Jsoup added by tchen-->
     compile group:'org.jsoup' , name:'jsoup' , version:'1.7.3'
     //<!--Crawljax added by tchen-->
-    compile group:'com.crawljax' , name:'crawljax-core' , version:'3.5.1'
+    //compile group:'com.crawljax' , name:'crawljax-core' , version:'3.5.1'
 
     compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '2.45.0'
     compile group: 'org.uncommons', name: 'reportng', version: '1.1.4'
