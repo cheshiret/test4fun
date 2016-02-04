@@ -31,6 +31,9 @@ gradle-app.setting
 ## Directory-based project format:
 .idea/
 
+## AWO test project
+testawo/
+
 ## File-based project format:
 *.ipr
 *.iws
