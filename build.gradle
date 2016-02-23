@@ -42,13 +42,15 @@ subprojects {
     configurations.all {
         transitive = false
     }
+    mainClassName = "com.active.qa.automation.web.test4fun.testcases.project.TestcaseLoader"
+
 }
 //task hello {
 //    doLast {println 'Hello World!'
 //    }
 
 /*sourceSets.main.java.srcDirs = ['java']
-mainClassName = "com.activenetwork.qa.awo.testcases.TestcaseLoader"
+
 
 task (TestcaseLoader, dependsOn: 'classes', type: JavaExec) {
     main = 'com.activenetwork.qa.awo.testcases.TestcaseLoader'
