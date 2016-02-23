@@ -20,7 +20,8 @@ repositories {
 
 
 dependencies {
-    compile group:'com.oracle' , name:'ojdbc14' , version:'10.2.0.4.0'
+    //compile group:'com.oracle' , name:'ojdbc14' , version:'10.2.0.4.0'
+    compile files('../testapi/libs/ojdbc14.jar')
     compile group:'net.java.dev.jna' , name:'jna' , version:'3.4.0'
     compile group:'net.java.dev.jna' , name:'platform' , version:'3.4.0'
     compile group:'mysql' , name:'mysql-connector-java' , version:'5.1.21'

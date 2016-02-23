@@ -33,7 +33,7 @@ dependencies {
     compile project(':testapi')
     compile project(':testdriver')
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile group:'com.oracle' , name:'ojdbc14' , version:'10.2.0.4.0'
+    compile files('../testapi/libs/ojdbc14.jar')
 //    compile group:'com.hynnet' , name:'oracle-driver-ojdbc6' , version:'12.1.0.1'
     compile group:'mysql' , name:'mysql-connector-java' , version:'5.1.21'
 
