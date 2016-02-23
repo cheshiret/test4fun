@@ -26,6 +26,8 @@ gradle-app.setting
 # Avoid ignoring jmockit.jar and autoitx.jar
 !/testapi/libs/jmockit.jar
 !/testapi/libs/autoitx.jar
+!/testapi/libs/ojdbc14.jar
+
 
 # Cache of project
 .gradletasknamecache
