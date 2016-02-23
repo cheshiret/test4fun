@@ -16,11 +16,16 @@ hs_err_pid*
 .gradle
 build/
 
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+# Avoid ignoring jmockit.jar and autoitx.jar
+!/testapi/libs/jmockit.jar
+!/testapi/libs/autoitx.jar
 
 # Cache of project
 .gradletasknamecache
