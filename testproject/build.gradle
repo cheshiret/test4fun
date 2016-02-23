@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+
     compile project(':testapi')
     compile project(':testdriver')
     compile fileTree(dir: 'libs', include: '*.jar')
@@ -68,10 +68,8 @@ dependencies {
     compile group:'org.apache.httpcomponents' , name:'httpmime'  , version:'4.2.1'
 
     //<!--Unit test and Utilities-->
-    compile group:'junit' , name:'junit' , version:'4.8.1'
-    compile group:'org.testng' , name:'testng' , version:'6.0.1'
-    compile group:'com.google.guava' , name:'guava' , version:'11.0.2'
-    compile group:'commons-io' , name:'commons-io' , version:'2.2'
+    compile group:'com.google.guava' , name:'guava' , version:'18.0'
+    compile group:'commons-io' , name:'commons-io' , version:'2.4'
     compile group:'net.java.dev.jna' , name:'jna' , version:'3.4.0'
     compile group:'net.java.dev.jna' , name:'platform' , version:'3.4.0'
 
@@ -81,12 +79,12 @@ dependencies {
     //<!--Unicode library-->
     compile group:'com.ibm.icu' , name:'icu4j' , version:'49.1'
 
-    //<!--TPTP datapool dependencies-->
+/*    //<!--TPTP datapool dependencies-->
     compile group:'org.eclipse.core' , name:'org.eclipse.core.runtime' , version:'3.6.0.v20100505'
     compile group:'org.eclipse.emf' , name:'org.eclipse.emf.common' , version:'2.6.0.v20100614-1136'
     compile group:'org.eclipse.emf' , name:'org.eclipse.emf.ecore' , version:'2.6.0.v20100614-1136'
     compile group:'org.eclipse.emf' , name:'org.eclipse.emf.ecore.xmi' , version:'2.5.0.v20100521-1846'
-    compile group:'org.eclipse.equinox' , name:'org.eclipse.equinox.common' , version:'3.6.0.v20100503'
+    compile group:'org.eclipse.equinox' , name:'org.eclipse.equinox.common' , version:'3.6.0.v20100503'*/
 
     //<!--OPENCSV, updated by tchen-->
     compile group:'net.sf.opencsv' , name:'opencsv' , version:'2.3'
@@ -100,7 +98,8 @@ dependencies {
     compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '2.45.0'
     compile group: 'org.uncommons', name: 'reportng', version: '1.1.4'
 
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile files('../testapi/libs/jmockit.jar')
+    testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
 
 }
 //task hello {

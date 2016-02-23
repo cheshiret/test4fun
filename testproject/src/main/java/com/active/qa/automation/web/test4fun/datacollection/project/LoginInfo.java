@@ -1,7 +1,5 @@
 package com.active.qa.automation.web.test4fun.datacollection.project;
 
-import junit.framework.Test;
-
 /**
  * @author : tchen
  * @since : 1/18/2016.
