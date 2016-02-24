@@ -103,6 +103,8 @@ dependencies {
     testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
 
 }
+
+    mainClassName = "com.active.qa.automation.web.test4fun.testcases.project.TestcaseLoader"
 //task hello {
 //    doLast {println 'Hello World!'
 //    }
