@@ -22,7 +22,7 @@ public class ReflectUtil {
       //Get rid of final   System.out.println(field.getName() + " -> static:" + Modifier.isStatic(field.getModifiers()) + " final:" + Modifier.isFinal(field.getModifiers()));
       //get value
 
-      //need fix java.lang.NoSuchMethodException: com.activenetwork.qa.awo.datacollection.legacy.Customer.getseq()
+      //need fix java.lang.NoSuchMethodException: com.activenetwork.qa.awo.datacollection.legacy.QueryCustomer.getseq()
       String type = field[j].getGenericType().toString();
       System.out.println("Property: " + name);
       if (type.equals("class java.lang.String")) {

@@ -48,10 +48,7 @@ public class DatabaseInst extends Database {
     if (dbConnection != null) {
       disconnect();
     }
-    //by default, connect to the automation database
     dbUser = TestProperty.getProperty("auto.db.user");
-    //dbPassword = TestProperty.getProperty("auto.db.pw");
-    //if password not encrypted use below;
     dbPassword = TestProperty.getProperty("auto.db.psw");
     dbVendor = TestProperty.getProperty("auto.db.vendor");
     dbDriver = TestProperty.getProperty("db." + dbVendor + ".driver");

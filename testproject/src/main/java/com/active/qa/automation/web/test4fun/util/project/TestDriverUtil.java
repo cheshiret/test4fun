@@ -1,6 +1,5 @@
 package com.active.qa.automation.web.test4fun.util.project;
 
-import com.active.qa.automation.web.test4fun.TestConstants;
 import com.active.qa.automation.web.testapi.TestApiConstants;
 import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
 import com.active.qa.automation.web.testapi.exception.UserStoppedScriptException;

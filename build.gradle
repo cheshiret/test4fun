@@ -15,8 +15,6 @@ allprojects {
 
 }
 
-
-
 subprojects {
 
     apply plugin: "java"
@@ -45,9 +43,6 @@ subprojects {
     mainClassName = "com.active.qa.automation.web.test4fun.testcases.project.TestcaseLoader"
 
 }
-//task hello {
-//    doLast {println 'Hello World!'
-//    }
 
 /*sourceSets.main.java.srcDirs = ['java']
 

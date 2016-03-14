@@ -1,6 +1,5 @@
 package com.active.qa.automation.web.test4fun.util.project;
 
-import com.active.qa.automation.web.test4fun.TestConstants;
 import com.active.qa.automation.web.testapi.exception.ActionFailedException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
