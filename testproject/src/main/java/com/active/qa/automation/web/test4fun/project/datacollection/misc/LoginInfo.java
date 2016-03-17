@@ -1,10 +1,12 @@
-package com.active.qa.automation.web.test4fun.project.datacollection;
+package com.active.qa.automation.web.test4fun.project.datacollection.misc;
+
+import com.active.qa.automation.web.test4fun.project.datacollection.TestData;
 
 /**
  * @author : tchen
  * @since : 1/18/2016.
  */
-public class LoginInfo extends TestData{
+public class LoginInfo extends TestData {
   public String url = "";
 
   public String userName = "";

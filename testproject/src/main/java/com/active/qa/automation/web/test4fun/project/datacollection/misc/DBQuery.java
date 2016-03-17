@@ -1,4 +1,4 @@
-package com.active.qa.automation.web.test4fun.project.datacollection;
+package com.active.qa.automation.web.test4fun.project.datacollection.misc;
 
 import java.util.List;
 

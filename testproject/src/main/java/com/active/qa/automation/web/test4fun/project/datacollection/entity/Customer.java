@@ -1,9 +1,11 @@
-package com.active.qa.automation.web.test4fun.project.datacollection;
+package com.active.qa.automation.web.test4fun.project.datacollection.entity;
+
+import com.active.qa.automation.web.test4fun.project.datacollection.TestData;
 
 /**
  * Created by tchen on 1/18/2016.
  */
-public class Customer extends TestData{
+public class Customer extends TestData {
   public String seq = "";
 
   public String title = "";

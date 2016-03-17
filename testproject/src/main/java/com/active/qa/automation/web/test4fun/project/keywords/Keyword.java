@@ -17,7 +17,5 @@ public interface Keyword extends TestApiConstants {
    */
   public void invokeURL(String url, boolean newBrowser);
 
-  public void check(CheckIdentifier checkid);
-
 }
 

@@ -1,6 +1,6 @@
 package com.active.qa.automation.web.test4fun.project.util;
 
-import com.active.qa.automation.web.test4fun.project.datacollection.Customer;
+import com.active.qa.automation.web.test4fun.project.datacollection.entity.Customer;
 import com.active.qa.automation.web.testapi.exception.ActionFailedException;
 import com.active.qa.automation.web.testapi.util.CryptoUtil;
 import com.active.qa.automation.web.testapi.util.RegularExpression;
