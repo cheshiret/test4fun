@@ -10,13 +10,12 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  */
 public class testMain {
   public static void main(String[] args) throws Exception {
-    String url = "https://www.baidu.com/";
+    String url = "https://orms-torqa5.dev.activenetwork.com/";
     System.setProperty("webdriver.ie.driver", "D:\\ShareFolder\\IEDriverServer_x64.exe");
     WebDriver driver = new InternetExplorerDriver();
     driver.get(url);
-    System.out.println(PgParser.getPageSource(driver));
     String source = PgParser.getPageSource(driver);
-    PgParser.getUrlText(source, "listView");
+    System.out.println( PgParser.cleanrelaxed(source));
     driver.close();
   }
 }
