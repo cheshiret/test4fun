@@ -7,6 +7,7 @@ import com.active.qa.automation.web.testapi.interfaces.html.IText;
 import com.active.qa.automation.web.testapi.util.DateFunctions;
 import com.active.qa.automation.web.testapi.util.KeyInput;
 import com.active.qa.automation.web.testapi.util.Property;
+import com.active.qa.automation.web.testapi.util.TestProperty;
 
 import java.util.List;
 
@@ -66,7 +67,7 @@ public abstract class HtmlMainPage extends HtmlPage {
   /**
    * if invalid date is change into an valid date or null string, Return true; or return false
    *
-   * @param invaildDates: an array of invalid dates
+   * @param invalidDates: an array of invalid dates
    * @param index
    * @param propertys
    */
@@ -96,4 +97,97 @@ public abstract class HtmlMainPage extends HtmlPage {
   public IHtmlObject[] getTableObjectById(Object value) {
     return getTableObject(".id", value);
   }
+
+  public boolean elementsExist(Property[] property) {
+    return browser.checkHtmlObjectExists(property);
+  }
+
+  public boolean elementsExist(List<Property[]> property) {
+    return browser.checkHtmlObjectExists(property);
+  }
+
+  public String propertyString(Property[] property) {
+    String s = null;
+    for (int i = 0; i < property.length; i++) {
+      s += property[i].getPropertyName() + "=" + property[i].getPropertyValue() + ",";
+    }
+    return s;
+  }
+
+  //public function to manipulate browser element
+  public void setElements(Property[] property, String value) {
+    if (elementsExist(property)) {
+      browser.setTextField(property, value);
+    } else {
+      logger.warn("There is no such element for " + propertyString(property) + " or the element has been updated");
+    }
+  }
+
+  public void setOnChangeElements(Property[] property, String value) {
+    if (elementsExist(property)) {
+      IHtmlObject[] objs = browser.getTextField(property);
+      if (objs.length > 0) {
+        ((IText) objs[0])
+            .setText(value, IText.Event.LOSEFOCUS);
+      }
+    } else {
+      logger.warn("There is no such element for " + propertyString(property) + " or the element has been updated");
+    }
+  }
+
+
+  public void selectElements(Property[] property, String value) {
+    if (elementsExist(property)) {
+      browser.selectDropdownList(property, value);
+    } else {
+      logger.warn("There is no such element for " + propertyString(property) + " or the element has been updated");
+    }
+  }
+
+
+  public void selectCheckBox(Property[] property) {
+    if (elementsExist(property)) {
+      browser.selectCheckBox(property);
+    } else {
+      logger.warn("There is no such element for " + propertyString(property) + " or the element has been updated");
+    }
+  }
+
+
+  public void click(Property[] property) {
+    if (elementsExist(property)) {
+      browser.clickGuiObject(property, true);
+    } else {
+      logger.warn("There is no such element for " + propertyString(property) + " or the element has been updated");
+    }
+  }
+
+  public void click(List<Property[]> property) {
+    if (elementsExist(property)) {
+      browser.clickGuiObject(property);
+    } else {
+      logger.warn("There is no such element for " + property + " or the element has been updated");
+    }
+  }
+
+  public void jsclick(Property[] property) {
+    if (elementsExist(property)) {
+      TestProperty.putProperty("object.needJavascriptClick", "true");
+      browser.clickGuiObject(property, true);
+      TestProperty.putProperty("object.needJavascriptClick", "false");
+    } else {
+      logger.warn("There is no such element for " + propertyString(property) + " or the element has been updated");
+    }
+  }
+
+  public void jsclick(List<Property[]> property) {
+    if (elementsExist(property)) {
+      TestProperty.putProperty("object.needJavascriptClick", "true");
+      browser.clickGuiObject(property);
+      TestProperty.putProperty("object.needJavascriptClick", "false");
+    } else {
+      logger.warn("There is no such element for " + property + " or the element has been updated");
+    }
+  }
+
 }
