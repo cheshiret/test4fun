@@ -2,24 +2,30 @@ package com.active.qa.automation.web.test4fun.project.util;
 
 import com.active.qa.automation.web.testapi.TestApiConstants;
 import com.active.qa.automation.web.testapi.exception.ItemNotFoundException;
-import com.active.qa.automation.web.testapi.exception.UserStoppedScriptException;
 import com.active.qa.automation.web.testapi.interfaces.testcase.Executable;
-import com.active.qa.automation.web.testapi.util.*;
-import com.active.qa.automation.web.testapi.verification.CheckPoints;
+import com.active.qa.automation.web.testapi.util.AutomationLogger;
+import com.active.qa.automation.web.testapi.util.FileUtil;
+import com.active.qa.automation.web.testapi.util.StringUtil;
+import com.active.qa.automation.web.testapi.util.TestProperty;
+import org.testng.TestNG;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.collections.Lists;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
 /**
  * @author : tchen
- * @since : 1/18/2016.
+ * @since : 3/22/2016.
  */
-public class TestDriverUtil {
+public class TestNGDriverUtil {
+
   static final String PARAM_SEPARATOR = ":";
   static final String VALUE_SEPARATOR = "=";
   private static String testSuite = "", passedCases = "", failedCases = "", exception = "", notExecuted = "";
@@ -27,6 +33,16 @@ public class TestDriverUtil {
   private static String runningId = null;
   private static int tool = TestConstants.SELENIUM; //default tool
   private static String driverui = TestConstants.LAUNCH_BATCH_TEST_WITHOUT_UI;
+
+
+  public static void testNGRunner(String location) {
+    TestNG tng = new TestNG();
+    List<String> suites = Lists.newArrayList();
+    suites.add(location);
+    tng.setTestSuites(suites);
+    tng.run();
+  }
+
 
   public static int callScript(String scriptFullName, String args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
     Class.forName("com.active.qa.automation.web.testdriver.driver.selenium.SeleniumBrowser").getDeclaredMethod("init", (Class<?>[]) null).invoke(null, (Object[]) null);
@@ -61,12 +77,18 @@ public class TestDriverUtil {
     return newArgs;
   }
 
+  @BeforeTest
+  public static void initTest() {
+
+  }
+
   /**
    * Load the test script
    *
    * @param args       - command line arguments
    * @param scriptName - the default script name to be used if it is not provided from args
    */
+  @Test
   public static void load(String[] args, String scriptName) {
     //initialize AWO test properties
     Util.initAwo();
@@ -83,16 +105,15 @@ public class TestDriverUtil {
         }
 
         //AutomationLogger needs the env value to set the log path
-        String env = TestDriverUtil.getParameter(args, "env");
+        String env = TestNGDriverUtil.getParameter(args, "env");
 
-        tool = Integer.parseInt(TestDriverUtil.getParameter(args, "tool", tool + ""));
+        tool = Integer.parseInt(TestNGDriverUtil.getParameter(args, "tool", tool + ""));
 
         if (env != null && env.length() > 0) {
           TestProperty.putProperty("target_env", env);
         }
 
-
-        TestDriverUtil.getParameter(args, "debug", TestProperty.getProperty("debug"));
+        TestNGDriverUtil.getParameter(args, "debug", TestProperty.getProperty("debug"));
       } else {
         AutomationLogger.getInstance("TestDriver").info("ScriptName is not provided from command argumment, use preset scriptName: \"" + scriptName + "\"");
       }
@@ -124,121 +145,9 @@ public class TestDriverUtil {
 
   }
 
-  public static void batchload() {
-    //define local variables
-    Timer timer = new Timer();
-    runningId = (new SimpleDateFormat("yyyyMMddhhmmss")).format(Calendar.getInstance().getTime()).toString();
+  @AfterTest
+  public static void testTearUp() {
 
-    //Initialize TestProperty to load all properties
-    Util.initAwo(); //updated by pzhu
-    TestProperty.putProperty("running.id", runningId);
-    TestProperty.putProperty("isBatch", "true");
-
-    int cursor = 0;
-    List<String> cases = null;
-    AutomationLogger logger = AutomationLogger.getInstance("TestDriver");
-    String emailto = null;
-    boolean loopmode = false;
-
-    if (driverui.equalsIgnoreCase(TestConstants.LAUNCH_BATCH_TEST_WITH_UI)) {
-      ScriptsLauncher sl = new ScriptsLauncher();
-      while (!sl.exit) {
-        Timer.sleep(1);
-      }
-      testSuite = sl.getTestCasesPath();
-      emailto = sl.getEmailAddress();
-      if (sl.onlyListed()) {
-        cases = Arrays.asList(Util.loadListedCases().split("\\s+"));//filterTestCases(cases, TestProperty.loadListedCases());
-      }
-
-    } else {
-      cases = Arrays.asList(Util.loadListedCases().split("\\s+"));
-      emailto = TestProperty.getProperty("notification.to");
-    }
-
-    try {
-//			if (sl.onlyListed()) {
-//				cases = Arrays.asList(AwoUtil.loadListedCases().split("\\s+"));//filterTestCases(cases, TestProperty.loadListedCases());
-//			}
-
-
-      if (TD_TestProperty.getTestData("loop.mode").equalsIgnoreCase("0")) {
-        totalCases = cases.size();
-        logger.info("Found total " + totalCases + " cases:");
-
-      }
-
-
-      // Testmethod if loop one test cases for several times //has bug with no log saved in the folder
-      // Existing bug,only the latest log would be saved in the log, no append
-      else if (TD_TestProperty.getTestData("loop.mode").equalsIgnoreCase("1")) {
-        totalCases = TD_TestProperty.getIntProperty("loop.size", 1);
-        logger.info("Will execute " + (String) cases.get(0) + " for " + totalCases + " times.");
-        loopmode = true;
-
-      }
-
-      // not sure what is it?
-//				for (int i = 0; i < totalCases; i++) {
-//					logger.debug(cases.get(i).toString());
-//					}
-
-      for (int i = 0; i < totalCases; i++) {
-        cursor = i;
-        String scriptName = loopmode ? (String) cases.get(0) : (String) cases.get(i);
-        String[] s = scriptName.split("\\.");
-        String caseName = s[s.length - 1];
-
-        String tmp = logger.getLogRootFolder();
-        String caseFolder = logger.getLogRootFolder() + File.separator + caseName;
-        logger.resetLogRootFolder(caseFolder);
-        logger.info(loopmode ? "Start to execute case " + scriptName + " for " + (i + 1) + " time." : "Start to execute case " + (i + 1) + ": " + scriptName);
-        int result = ((Integer) callScript(scriptName)).intValue();
-        CheckPoints.getInstance().reset();//added by pzhu
-        logger = AutomationLogger.getInstance("TestDriver");
-
-        logger.resetLogRootFolder(tmp);//add by pzhu
-
-
-        if (result == TestApiConstants.RESULT_PASSED) {
-          passedCases += caseName + " --- passed." + System.lineSeparator();
-          passedNum++;
-        } else {
-          failedCases += caseName + " --- failed." + System.lineSeparator();
-          failedNum++;
-        }
-      }
-
-    } catch (UserStoppedScriptException e) {
-      logger.info("TestDriver stopped by user. ");
-      exception = "Testmethod running was stopped by user.\n\n";
-    } catch (Throwable e) {
-      logger.error(e.toString(), e);
-      exception = "Functional tester meets an exception/error -- " + e.toString() + "\n\n";
-    } finally {
-      int seconds = timer.diff();
-      totalMins = Math.round(seconds / (float) (1000 * 60));
-
-      logger.info("Total execution time: " + totalMins + " minutes");
-      logger.info(passedNum + " cases were passed");
-      logger.info(failedNum + " cases were failed.");
-      logger.info((totalCases - passedNum - failedNum)
-          + " cases were not executed.");
-
-      if (cursor + 1 != totalCases) {
-        for (int i = cursor; i < totalCases; i++) {
-          String scriptName = (String) cases.get(i);
-
-          String[] s = scriptName.split("\\.");
-          String caseName = s[s.length - 1];
-          notExecuted += caseName + "\r";
-        }
-      }
-      if (TD_TestProperty.getIntProperty("ma.test.ind", 0) == 1) {
-        SendEmail.sendEmail(totalCases,failedNum,passedNum,totalMins,exception,passedCases,failedCases,notExecuted,testSuite,emailto);
-      }
-      System.exit(0);
-    }
   }
 
   /**
@@ -276,12 +185,11 @@ public class TestDriverUtil {
       // recurse through files and sub-directories
       for (int i = 0; i < dirContents.length; i++) {
         testCases.addAll(getTestCaseFiles(testCasePath + "/"
-            + dirContents[i]));
+                                          + dirContents[i]));
       }
     }
     return testCases;
   }
-
 
 
   private static List<String> filterTestCases(List<String> v, String list) {
@@ -291,8 +199,9 @@ public class TestDriverUtil {
       //String[] s = fullName.split("\\.");
       //String caseName = s[s.length - 1];
       //if (list.indexOf(caseName + "|") >= 0)
-      if (list.contains(fullName))
+      if (list.contains(fullName)) {
         toReturn.add(fullName);
+      }
     }
     return toReturn;
   }
@@ -306,12 +215,13 @@ public class TestDriverUtil {
   }
 
   public static String getParameter(Object[] param, String key) {
-    return TestDriverUtil.getParameter(param, key, "");
+    return TestNGDriverUtil.getParameter(param, key, "");
   }
 
   public static String getParameter(Object[] param, String key, String defaultValue) throws ItemNotFoundException {
-    if (param == null || param.length < 1)
+    if (param == null || param.length < 1) {
       return defaultValue;
+    }
 
     String replacer = "#@#@#@#";
     String paramString = null;
@@ -324,24 +234,27 @@ public class TestDriverUtil {
     }
 
     if (StringUtil.isEmpty(paramString)) {
-      if (defaultValue == null)
+      if (defaultValue == null) {
         throw new ItemNotFoundException("Parameter is empty.");
-      else
+      } else {
         return defaultValue;
+      }
     }
 
-
     int i = paramString.indexOf(key);
-    if (i == -1)
+    if (i == -1) {
       return defaultValue;
-    int j = paramString.indexOf(TestDriverUtil.VALUE_SEPARATOR, i);
-    if (j == -1)
+    }
+    int j = paramString.indexOf(TestNGDriverUtil.VALUE_SEPARATOR, i);
+    if (j == -1) {
       throw new ItemNotFoundException("Parameter format is wrong. \""
-          + TestDriverUtil.VALUE_SEPARATOR + "\" is missing for "
-          + paramString.substring(j));
-    int k = paramString.indexOf(TestDriverUtil.PARAM_SEPARATOR, j);
-    if (k == -1)
+                                      + TestNGDriverUtil.VALUE_SEPARATOR + "\" is missing for "
+                                      + paramString.substring(j));
+    }
+    int k = paramString.indexOf(TestNGDriverUtil.PARAM_SEPARATOR, j);
+    if (k == -1) {
       k = paramString.length();
+    }
 
     String paraValue = paramString.substring(j + 1, k);
     return paraValue.replaceAll(replacer, ":");
@@ -349,9 +262,10 @@ public class TestDriverUtil {
 
   public static void checkParameter(String key, String value)
       throws ItemNotFoundException {
-    if (value.length() < 1)
+    if (value.length() < 1) {
       throw new ItemNotFoundException("Mandatory parameter \"" + key
-          + "\" is missing.");
+                                      + "\" is missing.");
+    }
   }
 
   /**
