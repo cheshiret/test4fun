@@ -237,6 +237,7 @@ public class TestDriverUtil {
       if (TD_TestProperty.getIntProperty("ma.test.ind", 0) == 1) {
         SendEmail.sendEmail(totalCases,failedNum,passedNum,totalMins,exception,passedCases,failedCases,notExecuted,testSuite,emailto);
       }
+      System.gc();
       System.exit(0);
     }
   }

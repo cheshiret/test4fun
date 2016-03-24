@@ -10,35 +10,41 @@ import com.active.qa.automation.web.testapi.util.TestProperty;
  * @since : 3/22/2016.
  */
 public class SendEmail {
+
   public static void sendEmail(int totalCases, int failedNum, int passedNum, int totalMins,
-                                String exception, String passedCases, String failedCases, String notExecuted, String testSuite, String emailAddress) {
+                               String exception, String passedCases, String failedCases, String notExecuted, String testSuite, String emailAddress) {
     //Email email = new Email();
     AutomationLogger logger = AutomationLogger.getInstance("TestDriver");
     StringBuffer text = new StringBuffer();
 
     text.append("The test suite is executed on " + SysInfo.getHostName() + "(" + SysInfo.getHostIP() + ")\n\n");
-    if (totalCases > 0)
+    if (totalCases > 0) {
       text.append("Total " + totalCases + " test case(s).\n");
-    else
+    } else {
       text.append("There were no test cases found.\n");
+    }
 
-    if (failedNum < 1 && exception.length() < 1 && passedCases.length() > 0 && totalCases > 0 && passedNum == totalCases)
+    if (failedNum < 1 && exception.length() < 1 && passedCases.length() > 0 && totalCases > 0 && passedNum == totalCases) {
       text.append("All test cases PASSED!\n");
-    else {
+    } else {
       if (exception.length() > 0) {
         if (exception.indexOf("Testmethod running was stopped by user") >= 0) {
           text.append("Testmethod suite were stopped by user.\n");
           exception = "";
-        } else
+        } else {
           text.append("Testmethod suite execution meets exceptions/errors.\n");
+        }
       }
-      if (failedNum > 0)
+      if (failedNum > 0) {
         text.append("-- " + failedNum + " test case(s) FAILED.\n");
-      if (passedNum > 0)
+      }
+      if (passedNum > 0) {
         text.append("-- " + passedNum + " test case(s) PASSED.\n");
+      }
       int notRun = totalCases - failedNum - passedNum;
-      if (notRun > 0)
+      if (notRun > 0) {
         text.append("-- " + notRun + " test case(s) were not executed.\n");
+      }
     }
     text.append("---------------------------------\n");
 
@@ -68,16 +74,11 @@ public class SendEmail {
     String from = TestProperty.getProperty("notification.from");
     String to = emailAddress;
     if (TestProperty.getProperty("debug", "false").equalsIgnoreCase("true")) {
-      to += ";" + TestProperty.getProperty("notification.debug.to", "jdu@reserveamerica.com");
+      to += ";" + TestProperty.getProperty("notification.debug.to", "tony.chen@project.com");
     }
 
     String[] attachments = new String[1];
     attachments[0] = logger.getFullLogFileName();
-
-    if (attachments[0].indexOf("orms_") >= 0)
-      subject = "Orms " + subject;
-    else if (attachments[0].indexOf("web_") >= 0)
-      subject = "Web " + subject;
 
     try {
       Email.send(from, to, subject, text.toString(), attachments);
