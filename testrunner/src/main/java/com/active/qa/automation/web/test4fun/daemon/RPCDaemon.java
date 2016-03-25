@@ -1,6 +1,8 @@
 package com.active.qa.automation.web.test4fun.daemon;
 
 
+import com.active.qa.automation.web.testrunner.util.TestProperty;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,13 +22,14 @@ public class RPCDaemon {
     Runtime rt = Runtime.getRuntime();
     //Change the port # if needed
     int port = 4445;
+    String shareLocation= "\\\\8.8.8.8\\TestFarm_Shared";
     if (args.length > 0 && args[0].matches("\\d+")) {
       port = Integer.parseInt(args[0]);
     }
 
     try {
       //replace the ip from test properties file
-      rt.exec("net use x: \\\\8.8.8.8\\TestFarm_Shared");
+      rt.exec("net use z: "+shareLocation);
     } catch (IOException e) {
       e.printStackTrace();
       System.exit(1);

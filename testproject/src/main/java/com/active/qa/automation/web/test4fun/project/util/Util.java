@@ -17,6 +17,7 @@ import java.util.List;
  * @since 1/18/2016.
  */
 public class Util {
+
   /**
    * This is the AWO project path
    */
@@ -79,15 +80,6 @@ public class Util {
     TD_TestProperty.putProperty("ma_property.folder", PROPERTY_PATH);
 
   }
-
-
-//	public static void initMAContractDataLoader(String contract) {
-//		MA_TestProperty.load(Util.MA_PROPERTY_PATH+File.separator+contract+".data.properties");
-//
-//		MA_TestProperty.putProperty("ma_property.folder", MA_PROPERTY_PATH);
-//
-//	}
-
 
   /**
    * construct a default datapool path for the given script based on DATAOLL_ROOL folder.
@@ -180,8 +172,14 @@ public class Util {
   }
 
 
-  public static String loadListedCases() {
-    String file = Util.PROJECT_PATH + File.separator + "testdriver" + File.separator + "RunList.txt";
+  /**
+   * Load test cases from certain file
+   *
+   * @param caseslist -  a file with cases list as test suite
+   * @return FileUtil which contain all these file
+   */
+  public static String loadListedCases(String caseslist) {
+    String file = Util.PROJECT_PATH + File.separator + "testsuite" + File.separator + caseslist;
 
     String text = FileUtil.read(file);
     //text=text+",";
@@ -205,7 +203,7 @@ public class Util {
 
     if (!file.exists()) {
       throw new ItemNotFoundException(file.getAbsolutePath()
-          + " (Cannot find test case)");
+                                      + " (Cannot find test case)");
     }
 
     List<String> jars = new ArrayList<String>();
@@ -221,7 +219,7 @@ public class Util {
       // recurse through files and sub-directories
       for (int i = 0; i < dirContents.length; i++) {
         jars.addAll(getClassPath(path + "/"
-            + dirContents[i]));
+                                 + dirContents[i]));
       }
     }
     return jars;
@@ -240,7 +238,7 @@ public class Util {
 
     if (!testCase.exists()) {
       throw new ItemNotFoundException(testCase.getAbsolutePath()
-          + " (Cannot find test case)");
+                                      + " (Cannot find test case)");
     }
 
     List<String> testCases = new ArrayList<String>();
@@ -258,55 +256,12 @@ public class Util {
       // recurse through files and sub-directories
       for (int i = 0; i < dirContents.length; i++) {
         testCases.addAll(getTestCaseFiles(testCasePath + "/"
-            + dirContents[i]));
+                                          + dirContents[i]));
       }
     }
     return testCases;
   }
 
-//	public static String ConvertToMD5(String p_sPwd) {
-//		if (p_sPwd != null)
-//			p_sPwd = p_sPwd.trim();
-//
-//		return AutoMD5.convertToMD5(p_sPwd);
-//	}
-
-  public static boolean isUnifiedSearch() {
-    String current_url = TestProperty.getProperty("current.url", "other");
-    String product = identifyURL(current_url);
-    if (product.matches("web\\-(ra|rec|pl-ny)")) {
-      return true;
-    }
-
-    return false;
-  }
-
-  /**
-   * identify the product from the provided url
-   *
-   * @param url
-   * @return the product name
-   */
-  public static String identifyURL(String url) {
-    String env = TestProperty.getProperty("target_env");
-    env = env.replaceAll("\\d", "").toLowerCase();
-
-    if (url.matches(TestProperty.getProperty(env + ".orms.url.pattern"))) {
-      return "orms";
-    } else if (url.matches(TestProperty.getProperty(env + ".ra.url.pattern"))) {
-      return "web-ra";
-    } else if (url.matches(TestProperty.getProperty(env + ".rec.url.pattern"))) {
-      return "web-rec";
-    } else if (url.matches(TestProperty.getProperty(env + ".bw.url.pattern"))) {
-      return "web-bw";
-    } else if (url.matches(TestProperty.getProperty(env + ".pl.ny.url.pattern"))) {
-      return "web-pl-ny";
-    } else if (url.matches(TestProperty.getProperty(env + ".pl.url.pattern"))) {
-      return "web-pl";
-    } else {
-      return "other";
-    }
-  }
 
 }
 
