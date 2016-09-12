@@ -6,4 +6,5 @@ include 'generator'
 include 'testrunner'
 include 'testcrawler'
 include 'testawo'
+include 'testcaseparser'
 
